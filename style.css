@@ -1,0 +1,118 @@
+body {
+    height: 100vh;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 2fr 3fr 2fr;
+    grid-template-rows: 4fr 4fr 3fr 3fr 3fr 3fr 3fr 3fr 3fr 4fr 4fr 2fr;
+    grid-template-areas: 
+        "title title title"
+        "inst board secCon"
+        ". board ."
+        ". board ."
+        ". board ."
+        ". board ."
+        ". board ."
+        ". board ."
+        ". board ."
+        ". board ."
+        ". board gsbtncon"
+        ". . .";
+}
+  
+h2 {
+    grid-area: title;
+    color: black;
+    font-family: 'Courier New', Courier, monospace
+}
+  
+#instructions {
+    grid-area: inst;
+    color: black;
+    background-color: silver;
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 10px;
+    margin: 0 40px 0;
+}
+  
+#board {
+    grid-area: board;
+    background-color: gray;
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 10px;
+    margin: 0 40px 20px;
+}
+  
+#guessed {
+    /*grid-area: guessed;*/
+    background-color: silver;
+}
+  
+#hints {
+    /*grid-area: hints;*/
+    background-color: silver;
+}
+  
+#colors {
+    /*grid-area: colors;*/
+    background-color: silver;
+}
+
+#red {
+    background-color: orangered;
+}
+
+#yellow {
+    background-color: gold;
+}
+
+#green {
+    background-color: yellowgreen;
+}
+
+#teal {
+    background-color: lightseagreen;
+}
+
+#purple {
+    background-color: mediumpurple;
+}
+
+#magenta {
+    background-color: plum;
+}
+
+#secretContainer {
+    grid-area: secCon;
+    background-color: gray;
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 10px;
+    margin: 0 40px 0;
+}
+
+#secretCode {
+    background-color: silver;
+}
+
+#guessButtonContainer {
+    grid-area: gsbtncon;
+    background-color: gray;
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 10px;
+    margin: 0 40px 20px;
+}
+
+#guessButton {
+    background-color: silver;
+    color: black;
+    font-size: 25px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+h1, h2, #board, #secretContainer, #guessButtonContainer {
+    display: flex;
+    justify-content: center;
+}

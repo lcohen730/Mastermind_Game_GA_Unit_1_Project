@@ -4,7 +4,7 @@ body {
     display: grid;
     grid-template-columns: 2fr 3fr 2fr;
     grid-template-rows: 4fr 4fr 3fr 3fr 3fr 3fr 3fr 3fr 3fr 4fr 4fr 2fr;
-    grid-template-areas: 
+    grid-template-areas:
         "title title title"
         "inst board secCon"
         ". board ."
@@ -17,15 +17,15 @@ body {
         ". board ."
         ". board gsbtncon"
         ". . .";
-     background-color: lavender;
+    background-color: lavender;
 }
-  
+
 h2 {
     grid-area: title;
     color: black;
     font-family: 'Courier New', Courier, monospace;
 }
-  
+
 #instructions {
     grid-area: inst;
     color: black;
@@ -34,8 +34,19 @@ h2 {
     border-radius: 15px;
     padding: 10px;
     margin: 0 40px 0;
+    height: 390px;
+    display: flex;
+    flex-direction: column;
 }
-  
+
+h3 {
+    align-self: center;
+}
+
+ol {
+    margin-right: 20px;
+}
+
 #board {
     background-color: gray;
     border: 1px solid black;
@@ -50,7 +61,7 @@ h2 {
 #boardDisplay {
     display: flex;
 }
-  
+
 #guessed {
     background-color: silver;
     border: 1px solid black;
@@ -71,7 +82,7 @@ h2 {
     height: 30px;
     margin: 10px;
 }
-  
+
 #hints {
     background-color: silver;
     border: 1px solid black;
@@ -84,6 +95,7 @@ h2 {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    align-content: space-evenly;
 }
 
 #hints > div {
@@ -93,7 +105,7 @@ h2 {
     height: 15px;
     margin: 3px;
 }
-  
+
 #colors {
     background-color: silver;
     border: 1px solid black;
@@ -131,17 +143,41 @@ h2 {
     background-color: plum;
 }
 
+#red, #yellow, #green, #teal, #purple, #magenta {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+
 #secretContainer {
-    grid-area: secCon;
     background-color: gray;
     border: 1px solid black;
     border-radius: 15px;
+    width: 180px;
+    height: 50px;
     padding: 10px;
     margin: 0 40px 0;
 }
 
 #secretCode {
     background-color: silver;
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 10px;
+    width: 160px;
+    height: 30px;
+    align-self: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#secretCode > div {
+    border-radius: 50%;
+    border: 1px solid black;
+    width: 30px;
+    height: 30px;
 }
 
 #guessButtonContainer {
@@ -150,7 +186,10 @@ h2 {
     border: 1px solid black;
     border-radius: 15px;
     padding: 10px;
-    margin: 0 40px 20px;
+    margin-top: -60px;
+    margin-right: 300px;
+    margin-left: -100px;
+    width: 90px;
 }
 
 #guessButton {
@@ -160,13 +199,7 @@ h2 {
     font-family: 'Courier New', Courier, monospace;
 }
 
-h1, h2, #board, #secretContainer, #guessButtonContainer {
+h2, #board, #secretContainer, #guessButtonContainer {
     display: flex;
     justify-content: center;
-}
-
-#red, #yellow, #green, #teal, #purple, #magenta {
-    border-radius: 50%;
-    width: 45px;
-    height: 45px;
 }

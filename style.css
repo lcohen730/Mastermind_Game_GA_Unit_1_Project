@@ -17,7 +17,9 @@ body {
         ". board ."
         ". board gsbtncon"
         ". . .";
-    background-color: lavender;
+    background-image: url("https://t4.ftcdn.net/jpg/02/80/03/47/360_F_280034752_DLKb0deHfTDUTYyUs6eDYkSS97N0vaKy.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 h2 {
@@ -120,23 +122,28 @@ ol {
 }
 
 #red {
-    background-color: orangered;
+    /*background-color: orangered;*/
+    background-color:  rgb(251, 143, 109);
 }
 
 #yellow {
-    background-color: gold;
+    /*background-color: gold;*/
+    background-color:  rgb(251, 231, 144);
 }
 
 #green {
-    background-color: yellowgreen;
+    /*background-color: yellowgreen;*/
+    background-color:  rgb(183, 215, 146);
 }
 
 #teal {
     background-color: lightseagreen;
+    background-color:  rgb(126, 189, 195);
 }
 
 #purple {
     background-color: mediumpurple;
+    background-color:  rgb(173, 156, 214);
 }
 
 #magenta {

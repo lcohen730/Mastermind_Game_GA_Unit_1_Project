@@ -9,7 +9,7 @@ const guessColors = {
     '4': 'rgb(126, 189, 195)',
     '5': 'rgb(173, 156, 214)',
     '6': 'plum'
-  };
+};
 // correct or partially correct peg colors?
 const pegColors = [null, 'red', 'black'];
 
@@ -23,7 +23,7 @@ let guesses = [
     0, 0, 0, 0, 0, 0, 0, 0, 0, // col 1
     0, 0, 0, 0, 0, 0, 0, 0, 0, // col 2
     0, 0, 0, 0, 0, 0, 0, 0, 0  // col 3
- // r0 r1 r2 r3 r4 r5 r6 r7 r8
+    // r0 r1 r2 r3 r4 r5 r6 r7 r8
 ];
 // hints (four peg slots next to each guess - correct, somewhat correct, or wrong)
 let hints;
@@ -35,13 +35,19 @@ let outcome;
 /*----- cached elements  -----*/
 
 // colors to select (buttons that will fill in first available empty board space with that color when clicked)
-const colorButtons = [...document.querySelectorAll('#colors > button')];
+// const colorButtons = [...document.querySelectorAll('#colors > button')];
 const redButton = document.querySelector('#red');
 const yellowButton = document.querySelector('#yellow');
 const greenButton = document.querySelector('#green');
 const tealButton = document.querySelector('#teal');
 const purpleButton = document.querySelector('#purple');
 const magentaButton = document.querySelector('#magenta');
+
+// const secretCode = [...document.querySelectorAll('#secretCode > div')];
+const secretCode0 = document.querySelector('#code0');
+const secretCode1 = document.querySelector('#code1');
+const secretCode2 = document.querySelector('#code2');
+const secretCode3 = document.querySelector('#code3');
 
 /*----- event listeners -----*/
 
@@ -72,7 +78,7 @@ function start() {
         0, 0, 0, 0, 0, 0, 0, 0, 0, // col 1
         0, 0, 0, 0, 0, 0, 0, 0, 0, // col 2
         0, 0, 0, 0, 0, 0, 0, 0, 0  // col 3
-     // r0 r1 r2 r3 r4 r5 r6 r7 r8
+        // r0 r1 r2 r3 r4 r5 r6 r7 r8
     ]
     // no red or black pegs have been filled in
     hints = [
@@ -81,15 +87,66 @@ function start() {
         //r0    r1    r2    r3    r4    r5    r6    r7    r8    r9   r10    r11   r12   r13   r14   r15   r16   r17
     ]
     // secret code is re-randomized and hidden
-    /*newCode();*/
+    /*for (color of codeBox) {
+        color = color + (Math.floor(Math.random) * 6)
+    }*/
+    // renderCode();
+    randomize0();
+    randomize1();
+    randomize2();
+    randomize3();
 }
 
-/*function newCode() {
-    let circle = document.querySelector()
-    for color of codeBox {
-        cellEl.style.backgroundColor = COLORS[rowVal]
-      }
-  }*/
+function randomize0() {
+    codeBox[0] = Math.floor(Math.random() * 6 + 1)
+    renderCode0();
+}
+
+function randomize1() {
+    codeBox[1] = Math.floor(Math.random() * 6 + 1)
+    renderCode1();
+}
+
+function randomize2() {
+    codeBox[2] = Math.floor(Math.random() * 6 + 1)
+    renderCode2();
+}
+
+function randomize3() {
+    codeBox[3] = Math.floor(Math.random() * 6 + 1)
+    renderCode3();
+}
+
+// function renderCode() {
+    /*for (color of codeBox) {
+        color = color + (Math.floor(Math.random) * 6)
+    }*/
+    /*codeBox.forEach(function (clrVal, Idx) {
+        const cellId = `code${Idx}`;
+        const cellEl = document.getElementById(cellId);
+        cellEl.style.backgroundColor = guessColors[clrVal]
+    })
+}*/
+
+function renderCode0() {
+    const cellEl = document.getElementById('code0');
+    cellEl.style.backgroundColor = guessColors[codeBox[0]]
+}
+
+function renderCode1() {
+    const cellEl = document.getElementById('code1');
+    cellEl.style.backgroundColor = guessColors[codeBox[1]]
+}
+
+function renderCode2() {
+    const cellEl = document.getElementById('code2');
+    cellEl.style.backgroundColor = guessColors[codeBox[2]]
+}
+
+function renderCode3() {
+    const cellEl = document.getElementById('code3');
+    cellEl.style.backgroundColor = guessColors[codeBox[3]]
+}
 
 // when you click a color on the bottom, the first available empty space on the board is filled in with that color
 /*function guessRed() {
@@ -144,7 +201,7 @@ function guessMagenta() {
 
 // render color picked function
 function renderColor() {
-    guesses.forEach(function(clrVal, Idx) {
+    guesses.forEach(function (clrVal, Idx) {
         const cellId = `${Idx}`;
         const cellEl = document.getElementById(cellId);
         cellEl.style.backgroundColor = guessColors[clrVal]

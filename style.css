@@ -199,8 +199,10 @@ ol {
     padding: 10px;
     margin-top: -60px;
     margin-right: 300px;
-    margin-left: -100px;
+    /*margin-left: -100px;*/
     width: 90px;
+    justify-self: center;
+    align-self: center;
 }
 
 #guessButton {

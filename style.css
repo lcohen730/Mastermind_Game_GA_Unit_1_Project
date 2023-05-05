@@ -36,7 +36,7 @@ h2 {
     border-radius: 15px;
     padding: 10px;
     margin: 0 40px 0;
-    height: 390px;
+    height: 550px;
     display: flex;
     flex-direction: column;
 }
@@ -215,4 +215,26 @@ ol {
 h2, #board, #secretContainer, #guessButtonContainer {
     display: flex;
     justify-content: center;
+}
+
+@media only screen and (max-width: 1194px) {
+    #instructions > ol {
+        font-size: 14px;
+    }
+}
+
+@media only screen and (max-width: 1111px) {
+    #instructions > ol {
+        font-size: 13px;
+        margin: 0 20px 0;
+        padding: 0 5px 0;
+        margin-right: 5px;
+    }
+}
+
+@media only screen and (max-width: 1021px) {
+    #instructions {
+        font-size: 16px;
+        width: 150px;
+    }
 }

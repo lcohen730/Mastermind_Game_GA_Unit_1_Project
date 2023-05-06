@@ -53,6 +53,8 @@ const secretCode3 = document.querySelector('#code3');
 
 const guessButton = document.querySelector('#guessButton');
 
+const playAgainButton = document.querySelector('#playAgainButton');
+
 /*----- event listeners -----*/
 
 // when colored buttons on bottom are clicked, fill in first available empty board space with that color
@@ -69,7 +71,10 @@ magentaButton.addEventListener('click', guessMagenta)
 
 // when you click the 'guess' button, the red and black pegs will appear depending on how good the guess was
 guessButton.addEventListener('click', guessCode)
-// document.querySelector('#guessButton').addEventListener('click', /*function*/)
+
+// when you click on the 'play again' button, the game is re-started with a new code
+playAgainButton.addEventListener('click', start)
+
 /*----- functions -----*/
 
 // go back to starting screen when first visiting or refreshing page
@@ -90,6 +95,7 @@ function start() {
         0, 0, 0, 0  // r8
     //  c0 c1 c2 c3 
     ]
+    emptyGuesses();
     // no white or black pegs have been filled in
     hints = [
         0, 0, 0, 0, // guess 1 hints
@@ -102,6 +108,7 @@ function start() {
         0, 0, 0, 0, // guess 8 hints
         0, 0, 0, 0  // guess 9 hints
     ]
+    emptyHints();
     // secret code is re-randomized and hidden
     /*for (color of codeBox) {
         color = color + (Math.floor(Math.random) * 6)
@@ -111,6 +118,23 @@ function start() {
     randomize1();
     randomize2();
     randomize3();
+    // hideSecretCode();
+}
+
+function emptyGuesses() {
+    guesses.forEach(function (clrVal, Idx) {
+        const cellId = `${Idx}`;
+        const cellEl = document.getElementById(cellId);
+        cellEl.style.backgroundColor = guessColors[clrVal]
+    })
+}
+
+function emptyHints() {
+    hints.forEach(function (clrVal, Idx) {
+        const cellId = `${Idx}`;
+        const cellEl = document.getElementById(cellId);
+        cellEl.style.backgroundColor = guessColors[clrVal]
+    })
 }
 
 function randomize0() {
@@ -131,6 +155,13 @@ function randomize2() {
 function randomize3() {
     codeBox[3] = Math.floor(Math.random() * 6 + 1)
     renderCode3();
+}
+
+function hideSecretCode() {
+    secretCode0.style.visibility = 'hidden'
+    secretCode1.style.visibility = 'hidden'
+    secretCode2.style.visibility = 'hidden'
+    secretCode3.style.visibility = 'hidden'
 }
 
 // function renderCode() {
@@ -214,11 +245,13 @@ function guessCode() {
     if (guesses.indexOf(!0) % 4) {
         // if the guess matches the secret code, the secret code is revealed and a message pops up and replaces the body, saying something like "you win! play again for another code" and reveals a play again button that re-renders the init board
         if (guesses[guessesIdx] === codeBox[0] && guesses[guessesIdx+1] === codeBox[1] && guesses[guessesIdx+2] === codeBox[2] && guesses[guessesIdx+3] === codeBox[3]) {
-            alert('You win! Play again for another code.')
+            revealSecretCode();
+            setTimeout(()=> alert('You win! Play again for another code.'), 500)
         }
         // if the guess does not match the secret codem AND it is the 9th/last guess, the secret code is revealed and a message pops up saying something like, "you lose! sorry, try again" and reveals the play again button that re-renders the init board
         else if (guesses[35] !== 0) {
-            alert('You lose! Sorry, try again.')
+            revealSecretCode();
+            setTimeout(()=> alert('You lose! Sorry, try again.'), 500)
         }
         // if the guess does not match the secret code, and it is NOT the 9th/last turn, black and white pegs are revealed in the right-side small four circle space - one black peg for each color that is in the correct space and the correct color, and one white peg for each color that is in the secret code, but in the wrong space
         else if (
@@ -232,7 +265,7 @@ function guessCode() {
             // code1hints.push(codeBox.filter((idx) => (guesses[idx] === codeBox[idx])))
             render3BlackHint();
         }
-        else if (
+        /*else if (
             ((guesses[guessesIdx] === codeBox[0] && guesses[guessesIdx+1] === codeBox[1]) && (codeBox.includes(guesses[guessesIdx+2]) && codeBox.includes(guesses[guessesIdx+3]))) ||
             ((guesses[guessesIdx] === codeBox[0] && guesses[guessesIdx+2] === codeBox[2]) && (codeBox.includes(guesses[guessesIdx+1]) && codeBox.includes(guesses[guessesIdx+3]))) ||
             ((guesses[guessesIdx] === codeBox[0] && guesses[guessesIdx+3] === codeBox[3]) && (codeBox.includes(guesses[guessesIdx+1]) && codeBox.includes(guesses[guessesIdx+2]))) ||
@@ -240,14 +273,56 @@ function guessCode() {
             ((guesses[guessesIdx+1] === codeBox[1] && guesses[guessesIdx+3] === codeBox[3]) && (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+2]))) ||
             ((guesses[guessesIdx+2] === codeBox[2] && guesses[guessesIdx+3] === codeBox[3]) && (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+1])))) {
             render2Black2WhiteHint();
-        }
+        }*/
         else if (
+            ((guesses[guessesIdx] === codeBox[0] && guesses[guessesIdx+1] === codeBox[1]) &&
+            (guesses[guessesIdx+2] !== codeBox[0]) && (guesses[guessesIdx+2] !== codeBox[1]) && (guesses[guessesIdx+3] !== codeBox[0]) && (guesses[guessesIdx+2] !== codeBox[1]) &&
+            (codeBox.includes(guesses[guessesIdx+2]) && codeBox.includes(guesses[guessesIdx+3]))) ||
+            ((guesses[guessesIdx] === codeBox[0] && guesses[guessesIdx+2] === codeBox[2]) &&
+            (guesses[guessesIdx+1] !== codeBox[0]) && (guesses[guessesIdx+1] !== codeBox[2]) && (guesses[guessesIdx+3] !== codeBox[0]) && (guesses[guessesIdx+3] !== codeBox[2]) &&
+            (codeBox.includes(guesses[guessesIdx+1]) && codeBox.includes(guesses[guessesIdx+3]))) ||
+            ((guesses[guessesIdx] === codeBox[0] && guesses[guessesIdx+3] === codeBox[3]) &&
+            (guesses[guessesIdx+1] !== codeBox[0]) && (guesses[guessesIdx+1] !== codeBox[3]) && (guesses[guessesIdx+2] !== codeBox[0]) && (guesses[guessesIdx+2] !== codeBox[3]) &&
+            (codeBox.includes(guesses[guessesIdx+1]) && codeBox.includes(guesses[guessesIdx+2]))) ||
+            ((guesses[guessesIdx+1] === codeBox[1] && guesses[guessesIdx+2] === codeBox[2]) &&
+            (guesses[guessesIdx] !== codeBox[1]) && (guesses[guessesIdx] !== codeBox[2]) && (guesses[guessesIdx+3] !== codeBox[1]) && (guesses[guessesIdx+3] !== codeBox[2]) &&
+            (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+3]))) ||
+            ((guesses[guessesIdx+1] === codeBox[1] && guesses[guessesIdx+3] === codeBox[3]) &&
+            (guesses[guessesIdx] !== codeBox[1]) && (guesses[guessesIdx] !== codeBox[3]) && (guesses[guessesIdx+2] !== codeBox[1]) && (guesses[guessesIdx+2] !== codeBox[3]) &&
+            (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+2]))) ||
+            ((guesses[guessesIdx+2] === codeBox[2] && guesses[guessesIdx+3] === codeBox[3]) &&
+            (guesses[guessesIdx] !== codeBox[2]) && (guesses[guessesIdx] !== codeBox[3]) && (guesses[guessesIdx+1] !== codeBox[2]) && (guesses[guessesIdx+1] !== codeBox[3]) &&
+            (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+1])))) {
+            render2Black2WhiteHint();
+        }
+        /*else if (
             ((guesses[guessesIdx] === codeBox[0] && guesses[guessesIdx+1] === codeBox[1]) && (codeBox.includes(guesses[guessesIdx+2]) || codeBox.includes(guesses[guessesIdx+3]))) ||
             ((guesses[guessesIdx] === codeBox[0] && guesses[guessesIdx+2] === codeBox[2]) && (codeBox.includes(guesses[guessesIdx+1]) || codeBox.includes(guesses[guessesIdx+3]))) ||
             ((guesses[guessesIdx] === codeBox[0] && guesses[guessesIdx+3] === codeBox[3]) && (codeBox.includes(guesses[guessesIdx+1]) || codeBox.includes(guesses[guessesIdx+2]))) ||
             ((guesses[guessesIdx+1] === codeBox[1] && guesses[guessesIdx+2] === codeBox[2]) && (codeBox.includes(guesses[guessesIdx]) || codeBox.includes(guesses[guessesIdx+3]))) ||
             ((guesses[guessesIdx+1] === codeBox[1] && guesses[guessesIdx+3] === codeBox[3]) && (codeBox.includes(guesses[guessesIdx]) || codeBox.includes(guesses[guessesIdx+2]))) ||
             ((guesses[guessesIdx+2] === codeBox[2] && guesses[guessesIdx+3] === codeBox[3]) && (codeBox.includes(guesses[guessesIdx]) || codeBox.includes(guesses[guessesIdx+1])))) {
+            render2Black1WhiteHint();
+        }*/
+        else if (
+            ((guesses[guessesIdx] === codeBox[0] && guesses[guessesIdx+1] === codeBox[1]) &&
+            (guesses[guessesIdx+2] !== codeBox[0]) && (guesses[guessesIdx+2] !== codeBox[1]) && (guesses[guessesIdx+3] !== codeBox[0]) && (guesses[guessesIdx+2] !== codeBox[1]) &&
+            (codeBox.includes(guesses[guessesIdx+2]) || codeBox.includes(guesses[guessesIdx+3]))) ||
+            ((guesses[guessesIdx] === codeBox[0] && guesses[guessesIdx+2] === codeBox[2]) &&
+            (guesses[guessesIdx+1] !== codeBox[0]) && (guesses[guessesIdx+1] !== codeBox[2]) && (guesses[guessesIdx+3] !== codeBox[0]) && (guesses[guessesIdx+3] !== codeBox[2]) &&
+            (codeBox.includes(guesses[guessesIdx+1]) || codeBox.includes(guesses[guessesIdx+3]))) ||
+            ((guesses[guessesIdx] === codeBox[0] && guesses[guessesIdx+3] === codeBox[3]) &&
+            (guesses[guessesIdx+1] !== codeBox[0]) && (guesses[guessesIdx+1] !== codeBox[3]) && (guesses[guessesIdx+2] !== codeBox[0]) && (guesses[guessesIdx+2] !== codeBox[3]) &&
+            (codeBox.includes(guesses[guessesIdx+1]) || codeBox.includes(guesses[guessesIdx+2]))) ||
+            ((guesses[guessesIdx+1] === codeBox[1] && guesses[guessesIdx+2] === codeBox[2]) &&
+            (guesses[guessesIdx] !== codeBox[1]) && (guesses[guessesIdx] !== codeBox[2]) && (guesses[guessesIdx+3] !== codeBox[1]) && (guesses[guessesIdx+3] !== codeBox[2]) &&
+            (codeBox.includes(guesses[guessesIdx]) || codeBox.includes(guesses[guessesIdx+3]))) ||
+            ((guesses[guessesIdx+1] === codeBox[1] && guesses[guessesIdx+3] === codeBox[3]) &&
+            (guesses[guessesIdx] !== codeBox[1]) && (guesses[guessesIdx] !== codeBox[3]) && (guesses[guessesIdx+2] !== codeBox[1]) && (guesses[guessesIdx+2] !== codeBox[3]) &&
+            (codeBox.includes(guesses[guessesIdx]) || codeBox.includes(guesses[guessesIdx+2]))) ||
+            ((guesses[guessesIdx+2] === codeBox[2] && guesses[guessesIdx+3] === codeBox[3]) &&
+            (guesses[guessesIdx] !== codeBox[2]) && (guesses[guessesIdx] !== codeBox[3]) && (guesses[guessesIdx+1] !== codeBox[2]) && (guesses[guessesIdx+1] !== codeBox[3]) &&
+            (codeBox.includes(guesses[guessesIdx]) || codeBox.includes(guesses[guessesIdx+1])))) {
             render2Black1WhiteHint();
         }
         else if (
@@ -259,37 +334,88 @@ function guessCode() {
             (guesses[guessesIdx+2] === codeBox[2] && guesses[guessesIdx+3] === codeBox[3])) {
             render2BlackHint();
         }
-        else if (
+        /*else if (
             ((guesses[guessesIdx] === codeBox[0]) && (codeBox.includes(guesses[guessesIdx+1]) && codeBox.includes(guesses[guessesIdx+2]) && codeBox.includes(guesses[guessesIdx+3]))) ||
             ((guesses[guessesIdx+1] === codeBox[1]) && (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+2]) && codeBox.includes(guesses[guessesIdx+3]))) ||
             ((guesses[guessesIdx+2] === codeBox[2]) && (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+1]) && codeBox.includes(guesses[guessesIdx+3]))) ||
             ((guesses[guessesIdx+3] === codeBox[3]) && (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+1]) && codeBox.includes(guesses[guessesIdx+2])))) {
             render1Black3WhiteHint();
+        }*/
+        else if (
+            ((guesses[guessesIdx] === codeBox[0]) &&
+            (guesses[guessesIdx+1] !== codeBox[0]) &&
+            (guesses[guessesIdx+2] !== codeBox[0]) &&
+            (guesses[guessesIdx+3] !== codeBox[0]) &&
+            (codeBox.includes(guesses[guessesIdx+1]) && codeBox.includes(guesses[guessesIdx+2]) && codeBox.includes(guesses[guessesIdx+3]))) ||
+            ((guesses[guessesIdx+1] === codeBox[1]) &&
+            (guesses[guessesIdx] !== codeBox[1]) &&
+            (guesses[guessesIdx+2] !== codeBox[1]) &&
+            (guesses[guessesIdx+3] !== codeBox[1]) &&
+            (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+2]) && codeBox.includes(guesses[guessesIdx+3]))) ||
+            ((guesses[guessesIdx+2] === codeBox[2]) &&
+            (guesses[guessesIdx+0] !== codeBox[2]) &&
+            (guesses[guessesIdx+1] !== codeBox[2]) &&
+            (guesses[guessesIdx+3] !== codeBox[2]) &&
+            (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+1]) && codeBox.includes(guesses[guessesIdx+3]))) ||
+            ((guesses[guessesIdx+3] === codeBox[3]) &&
+            (guesses[guessesIdx] !== codeBox[3]) &&
+            (guesses[guessesIdx+1] !== codeBox[3]) &&
+            (guesses[guessesIdx+2] !== codeBox[3]) &&
+            (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+1]) && codeBox.includes(guesses[guessesIdx+2])))) {
+            render1Black3WhiteHint();
         }
         else if (
             ((guesses[guessesIdx] === codeBox[0]) &&
+            (guesses[guessesIdx+1] !== codeBox[0]) &&
+            (guesses[guessesIdx+2] !== codeBox[0]) &&
+            (guesses[guessesIdx+3] !== codeBox[0]) &&
             ((codeBox.includes(guesses[guessesIdx+1]) && codeBox.includes(guesses[guessesIdx+2])) ||
             (codeBox.includes(guesses[guessesIdx+1]) && codeBox.includes(guesses[guessesIdx+3])) ||
             (codeBox.includes(guesses[guessesIdx+2]) && codeBox.includes(guesses[guessesIdx+3])))) ||
             ((guesses[guessesIdx+1] === codeBox[1]) &&
+            (guesses[guessesIdx] !== codeBox[1]) &&
+            (guesses[guessesIdx+2] !== codeBox[1]) &&
+            (guesses[guessesIdx+3] !== codeBox[1]) &&
             ((codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+2])) ||
             (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+3])) ||
             (codeBox.includes(guesses[guessesIdx+2]) && codeBox.includes(guesses[guessesIdx+3])))) ||
             ((guesses[guessesIdx+2] === codeBox[2]) &&
+            (guesses[guessesIdx+0] !== codeBox[2]) &&
+            (guesses[guessesIdx+1] !== codeBox[2]) &&
+            (guesses[guessesIdx+3] !== codeBox[2]) &&
             ((codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+1])) ||
             (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+3])) ||
             (codeBox.includes(guesses[guessesIdx+1]) && codeBox.includes(guesses[guessesIdx+2])))) ||
             ((guesses[guessesIdx+3] === codeBox[3]) &&
+            (guesses[guessesIdx] !== codeBox[3]) &&
+            (guesses[guessesIdx+1] !== codeBox[3]) &&
+            (guesses[guessesIdx+2] !== codeBox[3]) &&
             ((codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+1])) ||
             (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+2])) ||
             (codeBox.includes(guesses[guessesIdx+1]) && codeBox.includes(guesses[guessesIdx+2]))))) {
             render1Black2WhiteHint();
         }
         else if (
-            (guesses[guessesIdx] === codeBox[0]) && (codeBox.includes(guesses[guessesIdx+1]) || codeBox.includes(guesses[guessesIdx+2]) || codeBox.includes(guesses[guessesIdx+3])) ||
-            (guesses[guessesIdx+1] === codeBox[1]) && (codeBox.includes(guesses[guessesIdx]) || codeBox.includes(guesses[guessesIdx+2]) || codeBox.includes(guesses[guessesIdx+3])) ||
-            (guesses[guessesIdx+2] === codeBox[2]) && (codeBox.includes(guesses[guessesIdx]) || codeBox.includes(guesses[guessesIdx+1]) || codeBox.includes(guesses[guessesIdx+3])) ||
-            (guesses[guessesIdx+3] === codeBox[3]) && (codeBox.includes(guesses[guessesIdx]) || codeBox.includes(guesses[guessesIdx+1]) || codeBox.includes(guesses[guessesIdx+2]))) {
+            ((guesses[guessesIdx] === codeBox[0]) &&
+            (guesses[guessesIdx+1] !== codeBox[0]) &&
+            (guesses[guessesIdx+2] !== codeBox[0]) &&
+            (guesses[guessesIdx+3] !== codeBox[0]) &&
+            (codeBox.includes(guesses[guessesIdx+1]) || codeBox.includes(guesses[guessesIdx+2]) || codeBox.includes(guesses[guessesIdx+3]))) ||
+            ((guesses[guessesIdx+1] === codeBox[1]) &&
+            (guesses[guessesIdx] !== codeBox[1]) &&
+            (guesses[guessesIdx+2] !== codeBox[1]) &&
+            (guesses[guessesIdx+3] !== codeBox[1]) &&
+            (codeBox.includes(guesses[guessesIdx]) || codeBox.includes(guesses[guessesIdx+2]) || codeBox.includes(guesses[guessesIdx+3]))) ||
+            ((guesses[guessesIdx+2] === codeBox[2]) &&
+            (guesses[guessesIdx+0] !== codeBox[2]) &&
+            (guesses[guessesIdx+1] !== codeBox[2]) &&
+            (guesses[guessesIdx+3] !== codeBox[2]) &&
+            (codeBox.includes(guesses[guessesIdx]) || codeBox.includes(guesses[guessesIdx+1]) || codeBox.includes(guesses[guessesIdx+3]))) ||
+            ((guesses[guessesIdx+3] === codeBox[3]) &&
+            (guesses[guessesIdx] !== codeBox[3]) &&
+            (guesses[guessesIdx+1] !== codeBox[3]) &&
+            (guesses[guessesIdx+2] !== codeBox[3]) &&
+            (codeBox.includes(guesses[guessesIdx]) || codeBox.includes(guesses[guessesIdx+1]) || codeBox.includes(guesses[guessesIdx+2])))) {
             render1Black1WhiteHint();
         }
         else if (guesses[guessesIdx] === codeBox[0] || guesses[guessesIdx+1] === codeBox[1] || guesses[guessesIdx+2] === codeBox[2] || guesses[guessesIdx+3] === codeBox[3]) {
@@ -299,24 +425,40 @@ function guessCode() {
             render4WhiteHint();
         }
         else if (
+            ((guesses[guessesIdx+3] !== codeBox[0]) && (guesses[guessesIdx+3] !== codeBox[1]) && (guesses[guessesIdx+3] !== codeBox[2]) && (guesses[guessesIdx+3] !== codeBox[3])) &&
             (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+1]) && codeBox.includes(guesses[guessesIdx+2])) ||
+            ((guesses[guessesIdx+2] !== codeBox[0]) && (guesses[guessesIdx+2] !== codeBox[1]) && (guesses[guessesIdx+2] !== codeBox[2]) && (guesses[guessesIdx+2] !== codeBox[3])) &&
             (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+1]) && codeBox.includes(guesses[guessesIdx+3])) ||
+            ((guesses[guessesIdx+1] !== codeBox[0]) && (guesses[guessesIdx+1] !== codeBox[1]) && (guesses[guessesIdx+1] !== codeBox[2]) && (guesses[guessesIdx+1] !== codeBox[3])) &&
             (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+2]) && codeBox.includes(guesses[guessesIdx+3])) ||
+            ((guesses[guessesIdx] !== codeBox[0]) && (guesses[guessesIdx] !== codeBox[1]) && (guesses[guessesIdx] !== codeBox[2]) && (guesses[guessesIdx] !== codeBox[3])) &&
             (codeBox.includes(guesses[guessesIdx+1]) && codeBox.includes(guesses[guessesIdx+2]) && codeBox.includes(guesses[guessesIdx+3]))) {
-            // three white
             render3WhiteHint();
         }
         else if (
-            ((codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+1])) ||
+            ((guesses[guessesIdx+2] !== codeBox[0]) && (guesses[guessesIdx+3] !== codeBox[0]) && (guesses[guessesIdx+2] !== codeBox[1]) && (guesses[guessesIdx+3] !== codeBox[1])) &&
+            (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+1])) ||
+            ((guesses[guessesIdx+1] !== codeBox[0]) && (guesses[guessesIdx+3] !== codeBox[0]) && (guesses[guessesIdx+1] !== codeBox[2]) && (guesses[guessesIdx+3] !== codeBox[2])) &&
             (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+2])) ||
+            ((guesses[guessesIdx+1] !== codeBox[0]) && (guesses[guessesIdx+2] !== codeBox[0]) && (guesses[guessesIdx+1] !== codeBox[3]) && (guesses[guessesIdx+2] !== codeBox[3])) &&
             (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+3])) ||
+            ((guesses[guessesIdx] !== codeBox[1]) && (guesses[guessesIdx+3] !== codeBox[1]) && (guesses[guessesIdx] !== codeBox[2]) && (guesses[guessesIdx+3] !== codeBox[2])) &&
             (codeBox.includes(guesses[guessesIdx+1]) && codeBox.includes(guesses[guessesIdx+2])) ||
+            ((guesses[guessesIdx] !== codeBox[1]) && (guesses[guessesIdx+2] !== codeBox[1]) && (guesses[guessesIdx] !== codeBox[3]) && (guesses[guessesIdx+2] !== codeBox[3])) &&
             (codeBox.includes(guesses[guessesIdx+1]) && codeBox.includes(guesses[guessesIdx+3])) ||
-            (codeBox.includes(guesses[guessesIdx+2]) && codeBox.includes(guesses[guessesIdx+3])))) {
+            ((guesses[guessesIdx] !== codeBox[2]) && (guesses[guessesIdx+1] !== codeBox[2]) && (guesses[guessesIdx] !== codeBox[3]) && (guesses[guessesIdx+1] !== codeBox[3])) &&
+            (codeBox.includes(guesses[guessesIdx+2]) && codeBox.includes(guesses[guessesIdx+3]))) {
             render2WhiteHint();
         }
         else if (
-            codeBox.includes(guesses[guessesIdx]) || codeBox.includes(guesses[guessesIdx+1]) || codeBox.includes(guesses[guessesIdx+2]) || codeBox.includes(guesses[guessesIdx+3])) {
+            
+            codeBox.includes(guesses[guessesIdx]) ||
+            
+            codeBox.includes(guesses[guessesIdx+1]) ||
+            
+            codeBox.includes(guesses[guessesIdx+2]) ||
+            
+            codeBox.includes(guesses[guessesIdx+3])) {
             render1WhiteHint();
         }
         guessesIdx +=4
@@ -657,5 +799,14 @@ function render1WhiteHint() {
 // render win or lose message function
 
 // secret code revealing function
+function revealSecretCode() {
+    secretCode0.style.visibility = 'visible'
+    secretCode1.style.visibility = 'visible'
+    secretCode2.style.visibility = 'visible'
+    secretCode3.style.visibility = 'visible'
+}
 
 // guess button appearing function
+
+// play again button appearing function
+// playAgainBtn.style.visibility = winner ? 'visible' : 'hidden'

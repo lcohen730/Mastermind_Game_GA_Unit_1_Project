@@ -165,11 +165,6 @@ function renderCode3() {
 }
 
 // when you click a color on the bottom, the first available empty space on the board is filled in with that color
-/*function guessRed() {
-    const guessesIdx = guesses.indexOf(0);
-    guesses[guessesIdx] = 1
-    renderRed();
-}*/
 function guessRed() {
     const guessesIdx = guesses.indexOf(0);
     guesses[guessesIdx] = 1
@@ -222,9 +217,9 @@ function guessCode() {
             alert('You win! Play again for another code.')
         }
         // if the guess does not match the secret codem AND it is the 9th/last guess, the secret code is revealed and a message pops up saying something like, "you lose! sorry, try again" and reveals the play again button that re-renders the init board
-        /*else if {
-
-        }*/
+        else if (guesses[35] !== 0) {
+            alert('You lose! Sorry, try again.')
+        }
         // if the guess does not match the secret code, and it is NOT the 9th/last turn, black and white pegs are revealed in the right-side small four circle space - one black peg for each color that is in the correct space and the correct color, and one white peg for each color that is in the secret code, but in the wrong space
         else if (
             (guesses[guessesIdx] === codeBox[0] && guesses[guessesIdx+1] === codeBox[1] && guesses[guessesIdx+2] === codeBox[2]) || 
@@ -235,7 +230,7 @@ function guessCode() {
                 renderHint1();
             }*/
             // code1hints.push(codeBox.filter((idx) => (guesses[idx] === codeBox[idx])))
-            render3BlackHint1();
+            render3BlackHint();
         }
         else if (
             ((guesses[guessesIdx] === codeBox[0] && guesses[guessesIdx+1] === codeBox[1]) && (codeBox.includes(guesses[guessesIdx+2]) && codeBox.includes(guesses[guessesIdx+3]))) ||
@@ -244,7 +239,7 @@ function guessCode() {
             ((guesses[guessesIdx+1] === codeBox[1] && guesses[guessesIdx+2] === codeBox[2]) && (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+3]))) ||
             ((guesses[guessesIdx+1] === codeBox[1] && guesses[guessesIdx+3] === codeBox[3]) && (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+2]))) ||
             ((guesses[guessesIdx+2] === codeBox[2] && guesses[guessesIdx+3] === codeBox[3]) && (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+1])))) {
-            render2Black2WhiteHint1();
+            render2Black2WhiteHint();
         }
         else if (
             ((guesses[guessesIdx] === codeBox[0] && guesses[guessesIdx+1] === codeBox[1]) && (codeBox.includes(guesses[guessesIdx+2]) || codeBox.includes(guesses[guessesIdx+3]))) ||
@@ -253,7 +248,7 @@ function guessCode() {
             ((guesses[guessesIdx+1] === codeBox[1] && guesses[guessesIdx+2] === codeBox[2]) && (codeBox.includes(guesses[guessesIdx]) || codeBox.includes(guesses[guessesIdx+3]))) ||
             ((guesses[guessesIdx+1] === codeBox[1] && guesses[guessesIdx+3] === codeBox[3]) && (codeBox.includes(guesses[guessesIdx]) || codeBox.includes(guesses[guessesIdx+2]))) ||
             ((guesses[guessesIdx+2] === codeBox[2] && guesses[guessesIdx+3] === codeBox[3]) && (codeBox.includes(guesses[guessesIdx]) || codeBox.includes(guesses[guessesIdx+1])))) {
-            render2Black1WhiteHint1();
+            render2Black1WhiteHint();
         }
         else if (
             (guesses[guessesIdx] === codeBox[0] && guesses[guessesIdx+1] === codeBox[1]) ||
@@ -262,14 +257,14 @@ function guessCode() {
             (guesses[guessesIdx+1] === codeBox[1] && guesses[guessesIdx+2] === codeBox[2]) ||
             (guesses[guessesIdx+1] === codeBox[1] && guesses[guessesIdx+3] === codeBox[3]) ||
             (guesses[guessesIdx+2] === codeBox[2] && guesses[guessesIdx+3] === codeBox[3])) {
-            render2BlackHint1();
+            render2BlackHint();
         }
         else if (
             ((guesses[guessesIdx] === codeBox[0]) && (codeBox.includes(guesses[guessesIdx+1]) && codeBox.includes(guesses[guessesIdx+2]) && codeBox.includes(guesses[guessesIdx+3]))) ||
             ((guesses[guessesIdx+1] === codeBox[1]) && (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+2]) && codeBox.includes(guesses[guessesIdx+3]))) ||
             ((guesses[guessesIdx+2] === codeBox[2]) && (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+1]) && codeBox.includes(guesses[guessesIdx+3]))) ||
             ((guesses[guessesIdx+3] === codeBox[3]) && (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+1]) && codeBox.includes(guesses[guessesIdx+2])))) {
-            render1Black3WhiteHint1();
+            render1Black3WhiteHint();
         }
         else if (
             ((guesses[guessesIdx] === codeBox[0]) &&
@@ -279,42 +274,51 @@ function guessCode() {
             ((guesses[guessesIdx+1] === codeBox[1]) &&
             ((codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+2])) ||
             (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+3])) ||
-            (codeBox.includes(guesses[guessesIdx+2]) && codeBox.includes(guesses[guessesIdx+3]))))
+            (codeBox.includes(guesses[guessesIdx+2]) && codeBox.includes(guesses[guessesIdx+3])))) ||
             ((guesses[guessesIdx+2] === codeBox[2]) &&
             ((codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+1])) ||
             (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+3])) ||
-            (codeBox.includes(guesses[guessesIdx+1]) && codeBox.includes(guesses[guessesIdx+2]))))
+            (codeBox.includes(guesses[guessesIdx+1]) && codeBox.includes(guesses[guessesIdx+2])))) ||
             ((guesses[guessesIdx+3] === codeBox[3]) &&
             ((codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+1])) ||
             (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+2])) ||
             (codeBox.includes(guesses[guessesIdx+1]) && codeBox.includes(guesses[guessesIdx+2]))))) {
-            render1Black2WhiteHint1();
+            render1Black2WhiteHint();
         }
         else if (
-            guesses[guessesIdx] === codeBox[0] ||
-            guesses[guessesIdx+1] === codeBox[1] ||
-            guesses[guessesIdx+2] === codeBox[2] ||
-            guesses[guessesIdx+3] === codeBox[3]) {
-            // one black one white
+            (guesses[guessesIdx] === codeBox[0]) && (codeBox.includes(guesses[guessesIdx+1]) || codeBox.includes(guesses[guessesIdx+2]) || codeBox.includes(guesses[guessesIdx+3])) ||
+            (guesses[guessesIdx+1] === codeBox[1]) && (codeBox.includes(guesses[guessesIdx]) || codeBox.includes(guesses[guessesIdx+2]) || codeBox.includes(guesses[guessesIdx+3])) ||
+            (guesses[guessesIdx+2] === codeBox[2]) && (codeBox.includes(guesses[guessesIdx]) || codeBox.includes(guesses[guessesIdx+1]) || codeBox.includes(guesses[guessesIdx+3])) ||
+            (guesses[guessesIdx+3] === codeBox[3]) && (codeBox.includes(guesses[guessesIdx]) || codeBox.includes(guesses[guessesIdx+1]) || codeBox.includes(guesses[guessesIdx+2]))) {
+            render1Black1WhiteHint();
         }
         else if (guesses[guessesIdx] === codeBox[0] || guesses[guessesIdx+1] === codeBox[1] || guesses[guessesIdx+2] === codeBox[2] || guesses[guessesIdx+3] === codeBox[3]) {
-            render1BlackHint1();
+            render1BlackHint();
         }
         else if (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+1]) && codeBox.includes(guesses[guessesIdx+2]) && codeBox.includes(guesses[guessesIdx+3])) {
-            render4WhiteHint1();
+            render4WhiteHint();
         }
-        /*else if () {
+        else if (
+            (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+1]) && codeBox.includes(guesses[guessesIdx+2])) ||
+            (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+1]) && codeBox.includes(guesses[guessesIdx+3])) ||
+            (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+2]) && codeBox.includes(guesses[guessesIdx+3])) ||
+            (codeBox.includes(guesses[guessesIdx+1]) && codeBox.includes(guesses[guessesIdx+2]) && codeBox.includes(guesses[guessesIdx+3]))) {
             // three white
+            render3WhiteHint();
         }
-        else if () {
-            // two white
+        else if (
+            ((codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+1])) ||
+            (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+2])) ||
+            (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+3])) ||
+            (codeBox.includes(guesses[guessesIdx+1]) && codeBox.includes(guesses[guessesIdx+2])) ||
+            (codeBox.includes(guesses[guessesIdx+1]) && codeBox.includes(guesses[guessesIdx+3])) ||
+            (codeBox.includes(guesses[guessesIdx+2]) && codeBox.includes(guesses[guessesIdx+3])))) {
+            render2WhiteHint();
         }
-        else if () {
-            // one white
+        else if (
+            codeBox.includes(guesses[guessesIdx]) || codeBox.includes(guesses[guessesIdx+1]) || codeBox.includes(guesses[guessesIdx+2]) || codeBox.includes(guesses[guessesIdx+3])) {
+            render1WhiteHint();
         }
-        else {
-            // no hints; no correct colors were guessed
-        }*/
         guessesIdx +=4
     }
 }
@@ -551,7 +555,7 @@ function renderColor() {
     })
 }*/
 
-function render3BlackHint1() {
+function render3BlackHint() {
     const cell0 = document.getElementById(`${guessesIdx}guess`);
     cell0.style.backgroundColor = pegColors[2]
     const cell1 = document.getElementById(`${guessesIdx+1}guess`);
@@ -560,7 +564,7 @@ function render3BlackHint1() {
     cell2.style.backgroundColor = pegColors[2]
 }
 
-function render2Black2WhiteHint1() {
+function render2Black2WhiteHint() {
     const cell0 = document.getElementById(`${guessesIdx}guess`);
     cell0.style.backgroundColor = pegColors[2]
     const cell1 = document.getElementById(`${guessesIdx+1}guess`);
@@ -571,7 +575,7 @@ function render2Black2WhiteHint1() {
     cell3.style.backgroundColor = pegColors[1]
 }
 
-function render2Black1WhiteHint1() {
+function render2Black1WhiteHint() {
     const cell0 = document.getElementById(`${guessesIdx}guess`);
     cell0.style.backgroundColor = pegColors[2]
     const cell1 = document.getElementById(`${guessesIdx+1}guess`);
@@ -580,14 +584,14 @@ function render2Black1WhiteHint1() {
     cell2.style.backgroundColor = pegColors[1]
 }
 
-function render2BlackHint1() {
+function render2BlackHint() {
     const cell0 = document.getElementById(`${guessesIdx}guess`);
     cell0.style.backgroundColor = pegColors[2]
     const cell1 = document.getElementById(`${guessesIdx+1}guess`);
     cell1.style.backgroundColor = pegColors[2]
 }
 
-function render1Black3WhiteHint1() {
+function render1Black3WhiteHint() {
     const cell0 = document.getElementById(`${guessesIdx}guess`);
     cell0.style.backgroundColor = pegColors[2]
     const cell1 = document.getElementById(`${guessesIdx+1}guess`);
@@ -598,7 +602,7 @@ function render1Black3WhiteHint1() {
     cell3.style.backgroundColor = pegColors[1]
 }
 
-function render1Black2WhiteHint1() {
+function render1Black2WhiteHint() {
     const cell0 = document.getElementById(`${guessesIdx}guess`);
     cell0.style.backgroundColor = pegColors[2]
     const cell1 = document.getElementById(`${guessesIdx+1}guess`);
@@ -607,12 +611,19 @@ function render1Black2WhiteHint1() {
     cell2.style.backgroundColor = pegColors[1]
 }
 
-function render1BlackHint1() {
+function render1Black1WhiteHint() {
+    const cell0 = document.getElementById(`${guessesIdx}guess`);
+    cell0.style.backgroundColor = pegColors[2]
+    const cell1 = document.getElementById(`${guessesIdx+1}guess`);
+    cell1.style.backgroundColor = pegColors[1]
+}
+
+function render1BlackHint() {
     const cell0 = document.getElementById(`${guessesIdx}guess`);
     cell0.style.backgroundColor = pegColors[2]
 }
 
-function render4WhiteHint1() {
+function render4WhiteHint() {
     const cell0 = document.getElementById(`${guessesIdx}guess`);
     cell0.style.backgroundColor = pegColors[1]
     const cell1 = document.getElementById(`${guessesIdx+1}guess`);
@@ -621,6 +632,27 @@ function render4WhiteHint1() {
     cell2.style.backgroundColor = pegColors[1]
     const cell3 = document.getElementById(`${guessesIdx+3}guess`);
     cell3.style.backgroundColor = pegColors[1]
+}
+
+function render3WhiteHint() {
+    const cell0 = document.getElementById(`${guessesIdx}guess`);
+    cell0.style.backgroundColor = pegColors[1]
+    const cell1 = document.getElementById(`${guessesIdx+1}guess`);
+    cell1.style.backgroundColor = pegColors[1]
+    const cell2 = document.getElementById(`${guessesIdx+2}guess`);
+    cell2.style.backgroundColor = pegColors[1]
+}
+
+function render2WhiteHint() {
+    const cell0 = document.getElementById(`${guessesIdx}guess`);
+    cell0.style.backgroundColor = pegColors[1]
+    const cell1 = document.getElementById(`${guessesIdx+1}guess`);
+    cell1.style.backgroundColor = pegColors[1]
+}
+
+function render1WhiteHint() {
+    const cell0 = document.getElementById(`${guessesIdx}guess`);
+    cell0.style.backgroundColor = pegColors[1]
 }
 // render win or lose message function
 

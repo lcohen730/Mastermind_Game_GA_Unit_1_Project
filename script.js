@@ -32,7 +32,7 @@ let code1hints = [];
 // secret code box (covered while playing, slides open or reveals when guessed correctly, or 9 guesses have been made - whichever comes first)
 let codeBox = [0, 0, 0, 0];
 // win or loss?
-let outcome;
+// let outcome;
 
 /*----- cached elements  -----*/
 
@@ -52,6 +52,8 @@ const secretCode2 = document.querySelector('#code2');
 const secretCode3 = document.querySelector('#code3');
 
 const guessButton = document.querySelector('#guessButton');
+
+const outcome = document.querySelector('#outcome');
 
 const playAgainButton = document.querySelector('#playAgainButton');
 
@@ -244,14 +246,33 @@ function guessCode() {
     guessCode9();*/
     if (guesses.indexOf(!0) % 4) {
         // if the guess matches the secret code, the secret code is revealed and a message pops up and replaces the body, saying something like "you win! play again for another code" and reveals a play again button that re-renders the init board
-        if (guesses[guessesIdx] === codeBox[0] && guesses[guessesIdx+1] === codeBox[1] && guesses[guessesIdx+2] === codeBox[2] && guesses[guessesIdx+3] === codeBox[3]) {
+        /*if (guesses[guessesIdx] === codeBox[0] && guesses[guessesIdx+1] === codeBox[1] && guesses[guessesIdx+2] === codeBox[2] && guesses[guessesIdx+3] === codeBox[3]) {
             revealSecretCode();
             setTimeout(()=> alert('You win! Play again for another code.'), 500)
+        }*/
+        if (guesses[guessesIdx] === codeBox[0] && guesses[guessesIdx+1] === codeBox[1] && guesses[guessesIdx+2] === codeBox[2] && guesses[guessesIdx+3] === codeBox[3]) {
+            revealSecretCode();
+            setTimeout(()=> {
+                outcome.style.visibility = 'visible'
+                outcome.innerHTML = '<strong>You win!</strong><br>Play again for another code.'
+                outcome.style.fontSize = '30px'
+                outcome.style.textAlign = 'center'
+                outcome.style.fontFamily = '"Courier New", Courier, monospace'
+                outcome.style.paddingTop = '23px'
+                }, 500)
         }
         // if the guess does not match the secret codem AND it is the 9th/last guess, the secret code is revealed and a message pops up saying something like, "you lose! sorry, try again" and reveals the play again button that re-renders the init board
         else if (guesses[35] !== 0) {
             revealSecretCode();
-            setTimeout(()=> alert('You lose! Sorry, try again.'), 500)
+            setTimeout(()=> {
+                outcome.style.visibility = 'visible'
+                outcome.style.backgroundColor = 'rgb(215, 141, 141)'
+                outcome.innerHTML = '<strong>You lose!</strong><br>Sorry, try again.'
+                outcome.style.fontSize = '30px'
+                outcome.style.textAlign = 'center'
+                outcome.style.fontFamily = '"Courier New", Courier, monospace'
+                outcome.style.paddingTop = '23px'
+                }, 500)
         }
         // if the guess does not match the secret code, and it is NOT the 9th/last turn, black and white pegs are revealed in the right-side small four circle space - one black peg for each color that is in the correct space and the correct color, and one white peg for each color that is in the secret code, but in the wrong space
         else if (

@@ -10,8 +10,8 @@ body {
         ". board ."
         ". board ."
         ". board ."
-        ". board ."
-        ". board ."
+        ". board outcome"
+        ". board outcome"
         ". board ."
         ". board ."
         ". board ."
@@ -189,6 +189,18 @@ ol {
     border: 1px solid black;
     width: 30px;
     height: 30px;
+}
+
+#outcome {
+    grid-area: outcome;
+    background-color: rgb(164, 204, 164);
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 10px;
+    margin-top: -400px;
+    margin-bottom: 250px;
+    width: 280px;
+    visibility: hidden;
 }
 
 #guessButtonContainer {

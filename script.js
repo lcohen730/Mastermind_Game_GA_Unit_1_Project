@@ -237,15 +237,6 @@ function guessMagenta() {
 }
 
 function guessCode() {
-    /*guessCode1();
-    guessCode2();
-    guessCode3();
-    guessCode4();
-    guessCode5();
-    guessCode6();
-    guessCode7();
-    guessCode8();
-    guessCode9();*/
     if (guesses.indexOf(!0) % 4) {
         // if the guess matches the secret code, the secret code is revealed and a message pops up and replaces the body, saying something like "you win! play again for another code" and reveals a play again button that re-renders the init board
         /*if (guesses[guessesIdx] === codeBox[0] && guesses[guessesIdx+1] === codeBox[1] && guesses[guessesIdx+2] === codeBox[2] && guesses[guessesIdx+3] === codeBox[3]) {
@@ -277,494 +268,56 @@ function guessCode() {
                 }, 500)
         }
         // if the guess does not match the secret code, and it is NOT the 9th/last turn, black and white pegs are revealed in the right-side small four circle space - one black peg for each color that is in the correct space and the correct color, and one white peg for each color that is in the secret code, but in the wrong space
-        /*else if (
-            (guesses[guessesIdx] === codeBox[0] && guesses[guessesIdx+1] === codeBox[1] && guesses[guessesIdx+2] === codeBox[2]) || 
-            (guesses[guessesIdx] === codeBox[0] && guesses[guessesIdx+1] === codeBox[1] && guesses[guessesIdx+3] === codeBox[3]) || 
-            (guesses[guessesIdx] === codeBox[0] && guesses[guessesIdx+2] === codeBox[2] && guesses[guessesIdx+3] === codeBox[3]) ||
-            (guesses[guessesIdx+1] === codeBox[1] && guesses[guessesIdx+2] === codeBox[2] && guesses[guessesIdx+3] === codeBox[3])) {*/
-            /*if (guesses[0] === codeBox[0] || guesses[guessesIdx+1] === codeBox[1] || guesses[guessesIdx+2] === codeBox[2] || guesses[guessesIdx+3] === codeBox[3]) {
-                renderHint1();
-            }*/
-            // code1hints.push(codeBox.filter((idx) => (guesses[idx] === codeBox[idx])))
-            //render3BlackHint();
-        //}
-        /*else if (
-            ((guesses[guessesIdx] === codeBox[0] && guesses[guessesIdx+1] === codeBox[1]) && (codeBox.includes(guesses[guessesIdx+2]) && codeBox.includes(guesses[guessesIdx+3]))) ||
-            ((guesses[guessesIdx] === codeBox[0] && guesses[guessesIdx+2] === codeBox[2]) && (codeBox.includes(guesses[guessesIdx+1]) && codeBox.includes(guesses[guessesIdx+3]))) ||
-            ((guesses[guessesIdx] === codeBox[0] && guesses[guessesIdx+3] === codeBox[3]) && (codeBox.includes(guesses[guessesIdx+1]) && codeBox.includes(guesses[guessesIdx+2]))) ||
-            ((guesses[guessesIdx+1] === codeBox[1] && guesses[guessesIdx+2] === codeBox[2]) && (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+3]))) ||
-            ((guesses[guessesIdx+1] === codeBox[1] && guesses[guessesIdx+3] === codeBox[3]) && (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+2]))) ||
-            ((guesses[guessesIdx+2] === codeBox[2] && guesses[guessesIdx+3] === codeBox[3]) && (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+1])))) {
-            render2Black2WhiteHint();
-        }*/
-        /*else if (
-            ((guesses[guessesIdx] === codeBox[0] && guesses[guessesIdx+1] === codeBox[1]) &&
-            (guesses[guessesIdx+2] !== codeBox[0]) && (guesses[guessesIdx+2] !== codeBox[1]) && (guesses[guessesIdx+3] !== codeBox[0]) && (guesses[guessesIdx+2] !== codeBox[1]) &&
-            (codeBox.includes(guesses[guessesIdx+2]) && codeBox.includes(guesses[guessesIdx+3]))) ||
-            ((guesses[guessesIdx] === codeBox[0] && guesses[guessesIdx+2] === codeBox[2]) &&
-            (guesses[guessesIdx+1] !== codeBox[0]) && (guesses[guessesIdx+1] !== codeBox[2]) && (guesses[guessesIdx+3] !== codeBox[0]) && (guesses[guessesIdx+3] !== codeBox[2]) &&
-            (codeBox.includes(guesses[guessesIdx+1]) && codeBox.includes(guesses[guessesIdx+3]))) ||
-            ((guesses[guessesIdx] === codeBox[0] && guesses[guessesIdx+3] === codeBox[3]) &&
-            (guesses[guessesIdx+1] !== codeBox[0]) && (guesses[guessesIdx+1] !== codeBox[3]) && (guesses[guessesIdx+2] !== codeBox[0]) && (guesses[guessesIdx+2] !== codeBox[3]) &&
-            (codeBox.includes(guesses[guessesIdx+1]) && codeBox.includes(guesses[guessesIdx+2]))) ||
-            ((guesses[guessesIdx+1] === codeBox[1] && guesses[guessesIdx+2] === codeBox[2]) &&
-            (guesses[guessesIdx] !== codeBox[1]) && (guesses[guessesIdx] !== codeBox[2]) && (guesses[guessesIdx+3] !== codeBox[1]) && (guesses[guessesIdx+3] !== codeBox[2]) &&
-            (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+3]))) ||
-            ((guesses[guessesIdx+1] === codeBox[1] && guesses[guessesIdx+3] === codeBox[3]) &&
-            (guesses[guessesIdx] !== codeBox[1]) && (guesses[guessesIdx] !== codeBox[3]) && (guesses[guessesIdx+2] !== codeBox[1]) && (guesses[guessesIdx+2] !== codeBox[3]) &&
-            (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+2]))) ||
-            ((guesses[guessesIdx+2] === codeBox[2] && guesses[guessesIdx+3] === codeBox[3]) &&
-            (guesses[guessesIdx] !== codeBox[2]) && (guesses[guessesIdx] !== codeBox[3]) && (guesses[guessesIdx+1] !== codeBox[2]) && (guesses[guessesIdx+1] !== codeBox[3]) &&
-            (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+1])))) {
-            render2Black2WhiteHint();
-        }*/
-        /*else if (
-            ((guesses[guessesIdx] === codeBox[0] && guesses[guessesIdx+1] === codeBox[1]) && (codeBox.includes(guesses[guessesIdx+2]) || codeBox.includes(guesses[guessesIdx+3]))) ||
-            ((guesses[guessesIdx] === codeBox[0] && guesses[guessesIdx+2] === codeBox[2]) && (codeBox.includes(guesses[guessesIdx+1]) || codeBox.includes(guesses[guessesIdx+3]))) ||
-            ((guesses[guessesIdx] === codeBox[0] && guesses[guessesIdx+3] === codeBox[3]) && (codeBox.includes(guesses[guessesIdx+1]) || codeBox.includes(guesses[guessesIdx+2]))) ||
-            ((guesses[guessesIdx+1] === codeBox[1] && guesses[guessesIdx+2] === codeBox[2]) && (codeBox.includes(guesses[guessesIdx]) || codeBox.includes(guesses[guessesIdx+3]))) ||
-            ((guesses[guessesIdx+1] === codeBox[1] && guesses[guessesIdx+3] === codeBox[3]) && (codeBox.includes(guesses[guessesIdx]) || codeBox.includes(guesses[guessesIdx+2]))) ||
-            ((guesses[guessesIdx+2] === codeBox[2] && guesses[guessesIdx+3] === codeBox[3]) && (codeBox.includes(guesses[guessesIdx]) || codeBox.includes(guesses[guessesIdx+1])))) {
-            render2Black1WhiteHint();
-        }*/
-        /*else if (
-            ((guesses[guessesIdx] === codeBox[0] && guesses[guessesIdx+1] === codeBox[1]) &&
-            (guesses[guessesIdx+2] !== codeBox[0]) && (guesses[guessesIdx+2] !== codeBox[1]) && (guesses[guessesIdx+3] !== codeBox[0]) && (guesses[guessesIdx+2] !== codeBox[1]) &&
-            (codeBox.includes(guesses[guessesIdx+2]) || codeBox.includes(guesses[guessesIdx+3]))) ||
-            ((guesses[guessesIdx] === codeBox[0] && guesses[guessesIdx+2] === codeBox[2]) &&
-            (guesses[guessesIdx+1] !== codeBox[0]) && (guesses[guessesIdx+1] !== codeBox[2]) && (guesses[guessesIdx+3] !== codeBox[0]) && (guesses[guessesIdx+3] !== codeBox[2]) &&
-            (codeBox.includes(guesses[guessesIdx+1]) || codeBox.includes(guesses[guessesIdx+3]))) ||
-            ((guesses[guessesIdx] === codeBox[0] && guesses[guessesIdx+3] === codeBox[3]) &&
-            (guesses[guessesIdx+1] !== codeBox[0]) && (guesses[guessesIdx+1] !== codeBox[3]) && (guesses[guessesIdx+2] !== codeBox[0]) && (guesses[guessesIdx+2] !== codeBox[3]) &&
-            (codeBox.includes(guesses[guessesIdx+1]) || codeBox.includes(guesses[guessesIdx+2]))) ||
-            ((guesses[guessesIdx+1] === codeBox[1] && guesses[guessesIdx+2] === codeBox[2]) &&
-            (guesses[guessesIdx] !== codeBox[1]) && (guesses[guessesIdx] !== codeBox[2]) && (guesses[guessesIdx+3] !== codeBox[1]) && (guesses[guessesIdx+3] !== codeBox[2]) &&
-            (codeBox.includes(guesses[guessesIdx]) || codeBox.includes(guesses[guessesIdx+3]))) ||
-            ((guesses[guessesIdx+1] === codeBox[1] && guesses[guessesIdx+3] === codeBox[3]) &&
-            (guesses[guessesIdx] !== codeBox[1]) && (guesses[guessesIdx] !== codeBox[3]) && (guesses[guessesIdx+2] !== codeBox[1]) && (guesses[guessesIdx+2] !== codeBox[3]) &&
-            (codeBox.includes(guesses[guessesIdx]) || codeBox.includes(guesses[guessesIdx+2]))) ||
-            ((guesses[guessesIdx+2] === codeBox[2] && guesses[guessesIdx+3] === codeBox[3]) &&
-            (guesses[guessesIdx] !== codeBox[2]) && (guesses[guessesIdx] !== codeBox[3]) && (guesses[guessesIdx+1] !== codeBox[2]) && (guesses[guessesIdx+1] !== codeBox[3]) &&
-            (codeBox.includes(guesses[guessesIdx]) || codeBox.includes(guesses[guessesIdx+1])))) {
-            render2Black1WhiteHint();
-        }
-        else if (
-            (guesses[guessesIdx] === codeBox[0] && guesses[guessesIdx+1] === codeBox[1]) ||
-            (guesses[guessesIdx] === codeBox[0] && guesses[guessesIdx+2] === codeBox[2]) ||
-            (guesses[guessesIdx] === codeBox[0] && guesses[guessesIdx+3] === codeBox[3]) ||
-            (guesses[guessesIdx+1] === codeBox[1] && guesses[guessesIdx+2] === codeBox[2]) ||
-            (guesses[guessesIdx+1] === codeBox[1] && guesses[guessesIdx+3] === codeBox[3]) ||
-            (guesses[guessesIdx+2] === codeBox[2] && guesses[guessesIdx+3] === codeBox[3])) {
-            render2BlackHint();
-        }*/
-        /*else if (
-            ((guesses[guessesIdx] === codeBox[0]) && (codeBox.includes(guesses[guessesIdx+1]) && codeBox.includes(guesses[guessesIdx+2]) && codeBox.includes(guesses[guessesIdx+3]))) ||
-            ((guesses[guessesIdx+1] === codeBox[1]) && (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+2]) && codeBox.includes(guesses[guessesIdx+3]))) ||
-            ((guesses[guessesIdx+2] === codeBox[2]) && (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+1]) && codeBox.includes(guesses[guessesIdx+3]))) ||
-            ((guesses[guessesIdx+3] === codeBox[3]) && (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+1]) && codeBox.includes(guesses[guessesIdx+2])))) {
-            render1Black3WhiteHint();
-        }*/
-        /*else if (
-            ((guesses[guessesIdx] === codeBox[0]) &&
-            (guesses[guessesIdx+1] !== codeBox[0]) &&
-            (guesses[guessesIdx+2] !== codeBox[0]) &&
-            (guesses[guessesIdx+3] !== codeBox[0]) &&
-            (codeBox.includes(guesses[guessesIdx+1]) && codeBox.includes(guesses[guessesIdx+2]) && codeBox.includes(guesses[guessesIdx+3]))) ||
-            ((guesses[guessesIdx+1] === codeBox[1]) &&
-            (guesses[guessesIdx] !== codeBox[1]) &&
-            (guesses[guessesIdx+2] !== codeBox[1]) &&
-            (guesses[guessesIdx+3] !== codeBox[1]) &&
-            (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+2]) && codeBox.includes(guesses[guessesIdx+3]))) ||
-            ((guesses[guessesIdx+2] === codeBox[2]) &&
-            (guesses[guessesIdx+0] !== codeBox[2]) &&
-            (guesses[guessesIdx+1] !== codeBox[2]) &&
-            (guesses[guessesIdx+3] !== codeBox[2]) &&
-            (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+1]) && codeBox.includes(guesses[guessesIdx+3]))) ||
-            ((guesses[guessesIdx+3] === codeBox[3]) &&
-            (guesses[guessesIdx] !== codeBox[3]) &&
-            (guesses[guessesIdx+1] !== codeBox[3]) &&
-            (guesses[guessesIdx+2] !== codeBox[3]) &&
-            (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+1]) && codeBox.includes(guesses[guessesIdx+2])))) {
-            render1Black3WhiteHint();
-        }
-        else if (
-            ((guesses[guessesIdx] === codeBox[0]) &&
-            (guesses[guessesIdx+1] !== codeBox[0]) &&
-            (guesses[guessesIdx+2] !== codeBox[0]) &&
-            (guesses[guessesIdx+3] !== codeBox[0]) &&
-            ((codeBox.includes(guesses[guessesIdx+1]) && codeBox.includes(guesses[guessesIdx+2])) ||
-            (codeBox.includes(guesses[guessesIdx+1]) && codeBox.includes(guesses[guessesIdx+3])) ||
-            (codeBox.includes(guesses[guessesIdx+2]) && codeBox.includes(guesses[guessesIdx+3])))) ||
-            ((guesses[guessesIdx+1] === codeBox[1]) &&
-            (guesses[guessesIdx] !== codeBox[1]) &&
-            (guesses[guessesIdx+2] !== codeBox[1]) &&
-            (guesses[guessesIdx+3] !== codeBox[1]) &&
-            ((codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+2])) ||
-            (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+3])) ||
-            (codeBox.includes(guesses[guessesIdx+2]) && codeBox.includes(guesses[guessesIdx+3])))) ||
-            ((guesses[guessesIdx+2] === codeBox[2]) &&
-            (guesses[guessesIdx+0] !== codeBox[2]) &&
-            (guesses[guessesIdx+1] !== codeBox[2]) &&
-            (guesses[guessesIdx+3] !== codeBox[2]) &&
-            ((codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+1])) ||
-            (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+3])) ||
-            (codeBox.includes(guesses[guessesIdx+1]) && codeBox.includes(guesses[guessesIdx+2])))) ||
-            ((guesses[guessesIdx+3] === codeBox[3]) &&
-            (guesses[guessesIdx] !== codeBox[3]) &&
-            (guesses[guessesIdx+1] !== codeBox[3]) &&
-            (guesses[guessesIdx+2] !== codeBox[3]) &&
-            ((codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+1])) ||
-            (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+2])) ||
-            (codeBox.includes(guesses[guessesIdx+1]) && codeBox.includes(guesses[guessesIdx+2]))))) {
-            render1Black2WhiteHint();
-        }
-        else if (
-            ((guesses[guessesIdx] === codeBox[0]) &&
-            (guesses[guessesIdx+1] !== codeBox[0]) &&
-            (guesses[guessesIdx+2] !== codeBox[0]) &&
-            (guesses[guessesIdx+3] !== codeBox[0]) &&
-            (codeBox.includes(guesses[guessesIdx+1]) || codeBox.includes(guesses[guessesIdx+2]) || codeBox.includes(guesses[guessesIdx+3]))) ||
-            ((guesses[guessesIdx+1] === codeBox[1]) &&
-            (guesses[guessesIdx] !== codeBox[1]) &&
-            (guesses[guessesIdx+2] !== codeBox[1]) &&
-            (guesses[guessesIdx+3] !== codeBox[1]) &&
-            (codeBox.includes(guesses[guessesIdx]) || codeBox.includes(guesses[guessesIdx+2]) || codeBox.includes(guesses[guessesIdx+3]))) ||
-            ((guesses[guessesIdx+2] === codeBox[2]) &&
-            (guesses[guessesIdx+0] !== codeBox[2]) &&
-            (guesses[guessesIdx+1] !== codeBox[2]) &&
-            (guesses[guessesIdx+3] !== codeBox[2]) &&
-            (codeBox.includes(guesses[guessesIdx]) || codeBox.includes(guesses[guessesIdx+1]) || codeBox.includes(guesses[guessesIdx+3]))) ||
-            ((guesses[guessesIdx+3] === codeBox[3]) &&
-            (guesses[guessesIdx] !== codeBox[3]) &&
-            (guesses[guessesIdx+1] !== codeBox[3]) &&
-            (guesses[guessesIdx+2] !== codeBox[3]) &&
-            (codeBox.includes(guesses[guessesIdx]) || codeBox.includes(guesses[guessesIdx+1]) || codeBox.includes(guesses[guessesIdx+2])))) {
-            render1Black1WhiteHint();
-        }
-        else if (guesses[guessesIdx] === codeBox[0] || guesses[guessesIdx+1] === codeBox[1] || guesses[guessesIdx+2] === codeBox[2] || guesses[guessesIdx+3] === codeBox[3]) {
-            render1BlackHint();
-        }
-        else if (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+1]) && codeBox.includes(guesses[guessesIdx+2]) && codeBox.includes(guesses[guessesIdx+3])) {
-            render4WhiteHint();
-        }
-        else if (
-            ((guesses[guessesIdx+3] !== codeBox[0]) && (guesses[guessesIdx+3] !== codeBox[1]) && (guesses[guessesIdx+3] !== codeBox[2]) && (guesses[guessesIdx+3] !== codeBox[3])) &&
-            (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+1]) && codeBox.includes(guesses[guessesIdx+2])) ||
-            ((guesses[guessesIdx+2] !== codeBox[0]) && (guesses[guessesIdx+2] !== codeBox[1]) && (guesses[guessesIdx+2] !== codeBox[2]) && (guesses[guessesIdx+2] !== codeBox[3])) &&
-            (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+1]) && codeBox.includes(guesses[guessesIdx+3])) ||
-            ((guesses[guessesIdx+1] !== codeBox[0]) && (guesses[guessesIdx+1] !== codeBox[1]) && (guesses[guessesIdx+1] !== codeBox[2]) && (guesses[guessesIdx+1] !== codeBox[3])) &&
-            (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+2]) && codeBox.includes(guesses[guessesIdx+3])) ||
-            ((guesses[guessesIdx] !== codeBox[0]) && (guesses[guessesIdx] !== codeBox[1]) && (guesses[guessesIdx] !== codeBox[2]) && (guesses[guessesIdx] !== codeBox[3])) &&
-            (codeBox.includes(guesses[guessesIdx+1]) && codeBox.includes(guesses[guessesIdx+2]) && codeBox.includes(guesses[guessesIdx+3]))) {
-            render3WhiteHint();
-        }
-        else if (
-            ((guesses[guessesIdx+2] !== codeBox[0]) && (guesses[guessesIdx+3] !== codeBox[0]) && (guesses[guessesIdx+2] !== codeBox[1]) && (guesses[guessesIdx+3] !== codeBox[1])) &&
-            (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+1])) ||
-            ((guesses[guessesIdx+1] !== codeBox[0]) && (guesses[guessesIdx+3] !== codeBox[0]) && (guesses[guessesIdx+1] !== codeBox[2]) && (guesses[guessesIdx+3] !== codeBox[2])) &&
-            (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+2])) ||
-            ((guesses[guessesIdx+1] !== codeBox[0]) && (guesses[guessesIdx+2] !== codeBox[0]) && (guesses[guessesIdx+1] !== codeBox[3]) && (guesses[guessesIdx+2] !== codeBox[3])) &&
-            (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+3])) ||
-            ((guesses[guessesIdx] !== codeBox[1]) && (guesses[guessesIdx+3] !== codeBox[1]) && (guesses[guessesIdx] !== codeBox[2]) && (guesses[guessesIdx+3] !== codeBox[2])) &&
-            (codeBox.includes(guesses[guessesIdx+1]) && codeBox.includes(guesses[guessesIdx+2])) ||
-            ((guesses[guessesIdx] !== codeBox[1]) && (guesses[guessesIdx+2] !== codeBox[1]) && (guesses[guessesIdx] !== codeBox[3]) && (guesses[guessesIdx+2] !== codeBox[3])) &&
-            (codeBox.includes(guesses[guessesIdx+1]) && codeBox.includes(guesses[guessesIdx+3])) ||
-            ((guesses[guessesIdx] !== codeBox[2]) && (guesses[guessesIdx+1] !== codeBox[2]) && (guesses[guessesIdx] !== codeBox[3]) && (guesses[guessesIdx+1] !== codeBox[3])) &&
-            (codeBox.includes(guesses[guessesIdx+2]) && codeBox.includes(guesses[guessesIdx+3]))) {
-            render2WhiteHint();
-        }
-        else if (
-            
-            codeBox.includes(guesses[guessesIdx]) ||
-            
-            codeBox.includes(guesses[guessesIdx+1]) ||
-            
-            codeBox.includes(guesses[guessesIdx+2]) ||
-            
-            codeBox.includes(guesses[guessesIdx+3])) {
-            render1WhiteHint();
-        }*/
         else {
+            //const leftoverCodeBox = [...codeBox];
+            //console.log('leftover start', leftoverCodeBox)
             /*for(let i = 0; i < 4; i++) {
-                if(guesses[i] === codeBox[i]) {
-                  hints.push(2)
-                } else if(codeBox.includes(guesses[i])){
-                  hints.push(1)
-                } else {
-                  hints.push(0)
-                }
-            }*/
-            /*const leftoverCodeBox = [...codeBox];
-            console.log('leftover start', leftoverCodeBox)
-            for(let i = 0; i < 4; i++) {
-                if(guesses[i] === codeBox[i]) {
-                    hints.push(2)
-                    leftoverCodeBox.splice(i, 1)
-                }
-            }
-            console.log('leftover after blacks', leftoverCodeBox)
-            for(let i = 0; i < 4; i++) {
-                if(guesses[i] === codeBox[i]) {
-                    continue
-                }
-                else if (leftoverCodeBox.includes(guesses[i])){
-                    hints.push(1)
-                    leftoverCodeBox.splice(i, 1)
-                }*/
-                
-                /*else if(this color is included in the codeBox somewhere that is NOT already counted for by a black peg) {
-                   hints.push(1)
-                }*/
-            //}
-            //console.log('leftover after whites', leftoverCodeBox)
-        
-            //for (let i = 0; i < 4; i++) {
-                /*if(guesses[i] === codeBox[i]) {
-                    continue
-                }
-                else if (leftoverCodeBox.includes(guesses[i])){
-                    continue
-                }
-                else {
-                    hints.push(0)
-                }*/
-                /*if (guesses[i] !== codeBox[i] && !leftoverCodeBox.includes(guesses[i])) {
-                    hints.push(0)
-                }
-            }*/
-            const leftoverCodeBox = [...codeBox];
-            for(let i = 0; i < 4; i++) {
                 const indexOfI = leftoverCodeBox.indexOf(guesses[i])
                 if(guesses[i] === codeBox[i]) {
                     hints.push(2)
+                    leftoverCodeBox.splice(indexOfI, 1)*/
+                    //console.log('leftover after blacks', leftoverCodeBox)
+                /*}
+                else if (leftoverCodeBox.includes(guesses[i])) {
+                    hints.push(1)
+                    leftoverCodeBox.splice(indexOfI, 1)*/
+                    //console.log('leftover after whites', leftoverCodeBox)
+                /*}
+                else {
+                    hints.push(0)
+                }
+            }*/
+            //console.log('hints', hints)
+            //hints.sort(sortHints);
+            //console.log('hints sorted', hints)
+            //renderHint();
+            const leftoverCodeBox = [...codeBox];
+            console.log('leftover start', leftoverCodeBox)
+            for(let i = guessesIdx; i < (guessesIdx+4); i++) {
+                const indexOfI = leftoverCodeBox.indexOf(guesses[i])
+                if(guesses[i] === codeBox[(i%4)]) {
+                    hints.push(2)
                     leftoverCodeBox.splice(indexOfI, 1)
+                    console.log('leftover after blacks', leftoverCodeBox)
                 }
                 else if (leftoverCodeBox.includes(guesses[i])) {
                     hints.push(1)
                     leftoverCodeBox.splice(indexOfI, 1)
+                    console.log('leftover after whites', leftoverCodeBox)
                 }
                 else {
                     hints.push(0)
                 }
             }
             console.log('hints', hints)
-            hints.sort(sortHints);
-            console.log('hints sorted', hints)
+            /*hints.sort(sortHints);
+            console.log('hints sorted', hints)*/
+            renderHint();
         }
-        //guessesIdx +=4
+        guessesIdx +=4
     }
 }
 
-// function guessCode1() {
-// when you click the guess button, if there are not four circles filled out, an alert of some kind will pop up and say 'guess needs to be four colors long' and it will not reveal the red and black hint pegs OR maybe instead, the guess button will be un-clickable or invisible until you have four colors filled in
-    // if ((guesses.indexOf(!0) - 1)
-// if the guess is four colors long, and you click the guess button
-    /*if (guesses.indexOf(!0) % 4) {
-        // if the guess matches the secret code, the secret code is revealed and a message pops up and replaces the body, saying something like "you win! play again for another code" and reveals a play again button that re-renders the init board
-        if (guesses[0] === codeBox[0] && guesses[1] === codeBox[1] && guesses[2] === codeBox[2] && guesses[3] === codeBox[3]) {
-            alert('You win! Play again for another code.')
-        }*/
-        // if the guess does not match the secret codem AND it is the 9th/last guess, the secret code is revealed and a message pops up saying something like, "you lose! sorry, try again" and reveals the play again button that re-renders the init board
-        /*else if {
-
-        }*/
-        // if the guess does not match the secret code, and it is NOT the 9th/last turn, black and white pegs are revealed in the right-side small four circle space - one black peg for each color that is in the correct space and the correct color, and one white peg for each color that is in the secret code, but in the wrong space
-        /*else if (
-            (guesses[0] === codeBox[0] && guesses[1] === codeBox[1] && guesses[2] === codeBox[2]) || 
-            (guesses[0] === codeBox[0] && guesses[1] === codeBox[1] && guesses[3] === codeBox[3]) || 
-            (guesses[0] === codeBox[0] && guesses[2] === codeBox[2] && guesses[3] === codeBox[3]) ||
-            (guesses[1] === codeBox[1] && guesses[2] === codeBox[2] && guesses[3] === codeBox[3])) {*/
-            /*if (guesses[0] === codeBox[0] || guesses[1] === codeBox[1] || guesses[2] === codeBox[2] || guesses[3] === codeBox[3]) {
-                renderHint1();
-            }*/
-            // code1hints.push(codeBox.filter((idx) => (guesses[idx] === codeBox[idx])))
-            // render3BlackHint1();
-        //}
-        /*else if (
-            ((guesses[0] === codeBox[0] && guesses[1] === codeBox[1]) && (codeBox.includes(guesses[2]) && codeBox.includes(guesses[3]))) ||
-            ((guesses[0] === codeBox[0] && guesses[2] === codeBox[2]) && (codeBox.includes(guesses[1]) && codeBox.includes(guesses[3]))) ||
-            ((guesses[0] === codeBox[0] && guesses[3] === codeBox[3]) && (codeBox.includes(guesses[1]) && codeBox.includes(guesses[2]))) ||
-            ((guesses[1] === codeBox[1] && guesses[2] === codeBox[2]) && (codeBox.includes(guesses[0]) && codeBox.includes(guesses[3]))) ||
-            ((guesses[1] === codeBox[1] && guesses[3] === codeBox[3]) && (codeBox.includes(guesses[0]) && codeBox.includes(guesses[2]))) ||
-            ((guesses[2] === codeBox[2] && guesses[3] === codeBox[3]) && (codeBox.includes(guesses[0]) && codeBox.includes(guesses[1])))) {
-            render2Black2WhiteHint1();
-        }
-        else if (
-            ((guesses[0] === codeBox[0] && guesses[1] === codeBox[1]) && (codeBox.includes(guesses[2]) || codeBox.includes(guesses[3]))) ||
-            ((guesses[0] === codeBox[0] && guesses[2] === codeBox[2]) && (codeBox.includes(guesses[1]) || codeBox.includes(guesses[3]))) ||
-            ((guesses[0] === codeBox[0] && guesses[3] === codeBox[3]) && (codeBox.includes(guesses[1]) || codeBox.includes(guesses[2]))) ||
-            ((guesses[1] === codeBox[1] && guesses[2] === codeBox[2]) && (codeBox.includes(guesses[0]) || codeBox.includes(guesses[3]))) ||
-            ((guesses[1] === codeBox[1] && guesses[3] === codeBox[3]) && (codeBox.includes(guesses[0]) || codeBox.includes(guesses[2]))) ||
-            ((guesses[2] === codeBox[2] && guesses[3] === codeBox[3]) && (codeBox.includes(guesses[0]) || codeBox.includes(guesses[1])))) {
-            render2Black1WhiteHint1();
-        }
-        else if (
-            (guesses[0] === codeBox[0] && guesses[1] === codeBox[1]) ||
-            (guesses[0] === codeBox[0] && guesses[2] === codeBox[2]) ||
-            (guesses[0] === codeBox[0] && guesses[3] === codeBox[3]) ||
-            (guesses[1] === codeBox[1] && guesses[2] === codeBox[2]) ||
-            (guesses[1] === codeBox[1] && guesses[3] === codeBox[3]) ||
-            (guesses[2] === codeBox[2] && guesses[3] === codeBox[3])) {
-            render2BlackHint1();
-        }
-        else if (
-            ((guesses[0] === codeBox[0]) && (codeBox.includes(guesses[1]) && codeBox.includes(guesses[2]) && codeBox.includes(guesses[3]))) ||
-            ((guesses[1] === codeBox[1]) && (codeBox.includes(guesses[0]) && codeBox.includes(guesses[2]) && codeBox.includes(guesses[3]))) ||
-            ((guesses[2] === codeBox[2]) && (codeBox.includes(guesses[0]) && codeBox.includes(guesses[1]) && codeBox.includes(guesses[3]))) ||
-            ((guesses[3] === codeBox[3]) && (codeBox.includes(guesses[0]) && codeBox.includes(guesses[1]) && codeBox.includes(guesses[2])))) {
-            render1Black3WhiteHint1();
-        }
-        else if (
-            ((guesses[0] === codeBox[0]) &&
-            ((codeBox.includes(guesses[1]) && codeBox.includes(guesses[2])) ||
-            (codeBox.includes(guesses[1]) && codeBox.includes(guesses[3])) ||
-            (codeBox.includes(guesses[2]) && codeBox.includes(guesses[3])))) ||
-            ((guesses[1] === codeBox[1]) &&
-            ((codeBox.includes(guesses[0]) && codeBox.includes(guesses[2])) ||
-            (codeBox.includes(guesses[0]) && codeBox.includes(guesses[3])) ||
-            (codeBox.includes(guesses[2]) && codeBox.includes(guesses[3]))))
-            ((guesses[2] === codeBox[2]) &&
-            ((codeBox.includes(guesses[0]) && codeBox.includes(guesses[1])) ||
-            (codeBox.includes(guesses[0]) && codeBox.includes(guesses[3])) ||
-            (codeBox.includes(guesses[1]) && codeBox.includes(guesses[2]))))
-            ((guesses[3] === codeBox[3]) &&
-            ((codeBox.includes(guesses[0]) && codeBox.includes(guesses[1])) ||
-            (codeBox.includes(guesses[0]) && codeBox.includes(guesses[2])) ||
-            (codeBox.includes(guesses[1]) && codeBox.includes(guesses[2]))))) {
-            render1Black2WhiteHint1();
-        }
-        else if (
-            guesses[0] === codeBox[0] ||
-            guesses[1] === codeBox[1] ||
-            guesses[2] === codeBox[2] ||
-            guesses[3] === codeBox[3]) {
-            // one black one white
-        }
-        else if (guesses[0] === codeBox[0] || guesses[1] === codeBox[1] || guesses[2] === codeBox[2] || guesses[3] === codeBox[3]) {
-            render1BlackHint1();
-        }
-        else if (codeBox.includes(guesses[0]) && codeBox.includes(guesses[1]) && codeBox.includes(guesses[2]) && codeBox.includes(guesses[3])) {
-            render4WhiteHint1();
-        }*/
-        /*else if () {
-            // three white
-        }
-        else if () {
-            // two white
-        }
-        else if () {
-            // one white
-        }
-        else {
-            // no hints; no correct colors were guessed
-        }*/
-    //}
-//}
-
-/*function guessCode2() {
-    if (guesses.indexOf(!0) % 4) {
-        if (guesses[4] === codeBox[0] && guesses[5] === codeBox[1] && guesses[6] === codeBox[2] && guesses[7] === codeBox[3]) {
-            alert('You win! Play again for another code.')
-        }
-        else {
-            if (guesses[0] === codeBox[0] || guesses[1] === codeBox[1] || guesses[2] === codeBox[2] || guesses[3] === codeBox[3]) {
-                renderHint0();
-            }
-        }
-    }
-}
-
-function guessCode3() {
-    if (guesses.indexOf(!0) % 4) {
-        if (guesses[8] === codeBox[0] && guesses[9] === codeBox[1] && guesses[10] === codeBox[2] && guesses[11] === codeBox[3]) {
-            alert('You win! Play again for another code.')
-        }
-        else {
-            if (guesses[0] === codeBox[0] || guesses[1] === codeBox[1] || guesses[2] === codeBox[2] || guesses[3] === codeBox[3]) {
-                renderHint0();
-            }
-        }
-    }
-}
-
-function guessCode4() {
-    if (guesses.indexOf(!0) % 4) {
-        if (guesses[12] === codeBox[0] && guesses[13] === codeBox[1] && guesses[14] === codeBox[2] && guesses[15] === codeBox[3]) {
-            alert('You win! Play again for another code.')
-        }
-        else {
-            if (guesses[0] === codeBox[0] || guesses[1] === codeBox[1] || guesses[2] === codeBox[2] || guesses[3] === codeBox[3]) {
-                renderHint0();
-            }
-        }
-    }
-}
-
-function guessCode5() {
-    if (guesses.indexOf(!0) % 4) {
-        if (guesses[16] === codeBox[0] && guesses[17] === codeBox[1] && guesses[18] === codeBox[2] && guesses[19] === codeBox[3]) {
-            alert('You win! Play again for another code.')
-        }
-        else {
-            if (guesses[0] === codeBox[0] || guesses[1] === codeBox[1] || guesses[2] === codeBox[2] || guesses[3] === codeBox[3]) {
-                renderHint0();
-            }
-        }
-    }
-}
-
-function guessCode6() {
-    if (guesses.indexOf(!0) % 4) {
-        if (guesses[20] === codeBox[0] && guesses[21] === codeBox[1] && guesses[22] === codeBox[2] && guesses[23] === codeBox[3]) {
-            alert('You win! Play again for another code.')
-        }
-        else {
-            if (guesses[0] === codeBox[0] || guesses[1] === codeBox[1] || guesses[2] === codeBox[2] || guesses[3] === codeBox[3]) {
-                renderHint0();
-            }
-        }
-    }
-}
-
-function guessCode7() {
-    if (guesses.indexOf(!0) % 4) {
-        if (guesses[24] === codeBox[0] && guesses[25] === codeBox[1] && guesses[26] === codeBox[2] && guesses[27] === codeBox[3]) {
-            alert('You win! Play again for another code.')
-        }
-        else {
-            if (guesses[0] === codeBox[0] || guesses[1] === codeBox[1] || guesses[2] === codeBox[2] || guesses[3] === codeBox[3]) {
-                renderHint0();
-            }
-        }
-    }
-}
-
-function guessCode8() {
-    if (guesses.indexOf(!0) % 4) {
-        if (guesses[28] === codeBox[0] && guesses[29] === codeBox[1] && guesses[30] === codeBox[2] && guesses[31] === codeBox[3]) {
-            alert('You win! Play again for another code.')
-        }
-        else {
-            if (guesses[0] === codeBox[0] || guesses[1] === codeBox[1] || guesses[2] === codeBox[2] || guesses[3] === codeBox[3]) {
-                renderHint0();
-            }
-        }
-    }
-}
-
-function guessCode9() {
-    if (guesses.indexOf(!0) % 4) {
-        if (guesses[32] === codeBox[0] && guesses[33] === codeBox[1] && guesses[34] === codeBox[2] && guesses[35] === codeBox[3]) {
-            alert('You win! Play again for another code.')
-        }
-        else {
-            if (guesses[0] === codeBox[0] || guesses[1] === codeBox[1] || guesses[2] === codeBox[2] || guesses[3] === codeBox[3]) {
-                renderHint0();
-            }
-        }
-    }
-}
-*/
 // render function for board, render color picked, revealing black and white pegs, win or lose message, secret code revealing, and guess button appearing?
 
 // render board function
@@ -779,116 +332,21 @@ function renderColor() {
 }
 
 // function for revealing black and white pegs
-/*function renderHint1() {
-    hints.forEach(function (clrVal, Idx) {
-        const cellId = `${Idx}guess`;
-        const cellEl = document.getElementById(cellId);
-        cellEl.style.backgroundColor = guessColors[clrVal]
-    })
-}*/
 function sortHints (a, b) {
     return b - a;
 }
 
-function render3BlackHint() {
+function renderHint() {
     const cell0 = document.getElementById(`${guessesIdx}guess`);
-    cell0.style.backgroundColor = pegColors[2]
+    cell0.style.backgroundColor = pegColors[hints[guessesIdx]]
     const cell1 = document.getElementById(`${guessesIdx+1}guess`);
-    cell1.style.backgroundColor = pegColors[2]
+    cell1.style.backgroundColor = pegColors[hints[guessesIdx+1]]
     const cell2 = document.getElementById(`${guessesIdx+2}guess`);
-    cell2.style.backgroundColor = pegColors[2]
-}
-
-function render2Black2WhiteHint() {
-    const cell0 = document.getElementById(`${guessesIdx}guess`);
-    cell0.style.backgroundColor = pegColors[2]
-    const cell1 = document.getElementById(`${guessesIdx+1}guess`);
-    cell1.style.backgroundColor = pegColors[2]
-    const cell2 = document.getElementById(`${guessesIdx+2}guess`);
-    cell2.style.backgroundColor = pegColors[1]
+    cell2.style.backgroundColor = pegColors[hints[guessesIdx+2]]
     const cell3 = document.getElementById(`${guessesIdx+3}guess`);
-    cell3.style.backgroundColor = pegColors[1]
+    cell3.style.backgroundColor = pegColors[hints[guessesIdx+3]]
 }
 
-function render2Black1WhiteHint() {
-    const cell0 = document.getElementById(`${guessesIdx}guess`);
-    cell0.style.backgroundColor = pegColors[2]
-    const cell1 = document.getElementById(`${guessesIdx+1}guess`);
-    cell1.style.backgroundColor = pegColors[2]
-    const cell2 = document.getElementById(`${guessesIdx+2}guess`);
-    cell2.style.backgroundColor = pegColors[1]
-}
-
-function render2BlackHint() {
-    const cell0 = document.getElementById(`${guessesIdx}guess`);
-    cell0.style.backgroundColor = pegColors[2]
-    const cell1 = document.getElementById(`${guessesIdx+1}guess`);
-    cell1.style.backgroundColor = pegColors[2]
-}
-
-function render1Black3WhiteHint() {
-    const cell0 = document.getElementById(`${guessesIdx}guess`);
-    cell0.style.backgroundColor = pegColors[2]
-    const cell1 = document.getElementById(`${guessesIdx+1}guess`);
-    cell1.style.backgroundColor = pegColors[1]
-    const cell2 = document.getElementById(`${guessesIdx+2}guess`);
-    cell2.style.backgroundColor = pegColors[1]
-    const cell3 = document.getElementById(`${guessesIdx+3}guess`);
-    cell3.style.backgroundColor = pegColors[1]
-}
-
-function render1Black2WhiteHint() {
-    const cell0 = document.getElementById(`${guessesIdx}guess`);
-    cell0.style.backgroundColor = pegColors[2]
-    const cell1 = document.getElementById(`${guessesIdx+1}guess`);
-    cell1.style.backgroundColor = pegColors[1]
-    const cell2 = document.getElementById(`${guessesIdx+2}guess`);
-    cell2.style.backgroundColor = pegColors[1]
-}
-
-function render1Black1WhiteHint() {
-    const cell0 = document.getElementById(`${guessesIdx}guess`);
-    cell0.style.backgroundColor = pegColors[2]
-    const cell1 = document.getElementById(`${guessesIdx+1}guess`);
-    cell1.style.backgroundColor = pegColors[1]
-}
-
-function render1BlackHint() {
-    const cell0 = document.getElementById(`${guessesIdx}guess`);
-    cell0.style.backgroundColor = pegColors[2]
-}
-
-function render4WhiteHint() {
-    const cell0 = document.getElementById(`${guessesIdx}guess`);
-    cell0.style.backgroundColor = pegColors[1]
-    const cell1 = document.getElementById(`${guessesIdx+1}guess`);
-    cell1.style.backgroundColor = pegColors[1]
-    const cell2 = document.getElementById(`${guessesIdx+2}guess`);
-    cell2.style.backgroundColor = pegColors[1]
-    const cell3 = document.getElementById(`${guessesIdx+3}guess`);
-    cell3.style.backgroundColor = pegColors[1]
-}
-
-function render3WhiteHint() {
-    const cell0 = document.getElementById(`${guessesIdx}guess`);
-    cell0.style.backgroundColor = pegColors[1]
-    const cell1 = document.getElementById(`${guessesIdx+1}guess`);
-    cell1.style.backgroundColor = pegColors[1]
-    const cell2 = document.getElementById(`${guessesIdx+2}guess`);
-    cell2.style.backgroundColor = pegColors[1]
-}
-
-function render2WhiteHint() {
-    const cell0 = document.getElementById(`${guessesIdx}guess`);
-    cell0.style.backgroundColor = pegColors[1]
-    const cell1 = document.getElementById(`${guessesIdx+1}guess`);
-    cell1.style.backgroundColor = pegColors[1]
-}
-
-function render1WhiteHint() {
-    const cell0 = document.getElementById(`${guessesIdx}guess`);
-    cell0.style.backgroundColor = pegColors[1]
-}
 // render win or lose message function
 
 // secret code revealing function

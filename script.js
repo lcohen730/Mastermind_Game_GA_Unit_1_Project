@@ -99,7 +99,7 @@ function start() {
     ]
     emptyGuesses();
     // no white or black pegs have been filled in
-    hints = [
+    /*hints = [
         0, 0, 0, 0, // guess 1 hints
         0, 0, 0, 0, // guess 2 hints
         0, 0, 0, 0, // guess 3 hints
@@ -109,7 +109,8 @@ function start() {
         0, 0, 0, 0, // guess 7 hints
         0, 0, 0, 0, // guess 8 hints
         0, 0, 0, 0  // guess 9 hints
-    ]
+    ]*/
+    hints = []
     emptyHints();
     // secret code is re-randomized and hidden
     /*for (color of codeBox) {
@@ -120,7 +121,8 @@ function start() {
     randomize1();
     randomize2();
     randomize3();
-    // hideSecretCode();
+    //hideSecretCode();
+    console.log(codeBox)
 }
 
 function emptyGuesses() {
@@ -275,17 +277,17 @@ function guessCode() {
                 }, 500)
         }
         // if the guess does not match the secret code, and it is NOT the 9th/last turn, black and white pegs are revealed in the right-side small four circle space - one black peg for each color that is in the correct space and the correct color, and one white peg for each color that is in the secret code, but in the wrong space
-        else if (
+        /*else if (
             (guesses[guessesIdx] === codeBox[0] && guesses[guessesIdx+1] === codeBox[1] && guesses[guessesIdx+2] === codeBox[2]) || 
             (guesses[guessesIdx] === codeBox[0] && guesses[guessesIdx+1] === codeBox[1] && guesses[guessesIdx+3] === codeBox[3]) || 
             (guesses[guessesIdx] === codeBox[0] && guesses[guessesIdx+2] === codeBox[2] && guesses[guessesIdx+3] === codeBox[3]) ||
-            (guesses[guessesIdx+1] === codeBox[1] && guesses[guessesIdx+2] === codeBox[2] && guesses[guessesIdx+3] === codeBox[3])) {
+            (guesses[guessesIdx+1] === codeBox[1] && guesses[guessesIdx+2] === codeBox[2] && guesses[guessesIdx+3] === codeBox[3])) {*/
             /*if (guesses[0] === codeBox[0] || guesses[guessesIdx+1] === codeBox[1] || guesses[guessesIdx+2] === codeBox[2] || guesses[guessesIdx+3] === codeBox[3]) {
                 renderHint1();
             }*/
             // code1hints.push(codeBox.filter((idx) => (guesses[idx] === codeBox[idx])))
-            render3BlackHint();
-        }
+            //render3BlackHint();
+        //}
         /*else if (
             ((guesses[guessesIdx] === codeBox[0] && guesses[guessesIdx+1] === codeBox[1]) && (codeBox.includes(guesses[guessesIdx+2]) && codeBox.includes(guesses[guessesIdx+3]))) ||
             ((guesses[guessesIdx] === codeBox[0] && guesses[guessesIdx+2] === codeBox[2]) && (codeBox.includes(guesses[guessesIdx+1]) && codeBox.includes(guesses[guessesIdx+3]))) ||
@@ -295,7 +297,7 @@ function guessCode() {
             ((guesses[guessesIdx+2] === codeBox[2] && guesses[guessesIdx+3] === codeBox[3]) && (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+1])))) {
             render2Black2WhiteHint();
         }*/
-        else if (
+        /*else if (
             ((guesses[guessesIdx] === codeBox[0] && guesses[guessesIdx+1] === codeBox[1]) &&
             (guesses[guessesIdx+2] !== codeBox[0]) && (guesses[guessesIdx+2] !== codeBox[1]) && (guesses[guessesIdx+3] !== codeBox[0]) && (guesses[guessesIdx+2] !== codeBox[1]) &&
             (codeBox.includes(guesses[guessesIdx+2]) && codeBox.includes(guesses[guessesIdx+3]))) ||
@@ -315,7 +317,7 @@ function guessCode() {
             (guesses[guessesIdx] !== codeBox[2]) && (guesses[guessesIdx] !== codeBox[3]) && (guesses[guessesIdx+1] !== codeBox[2]) && (guesses[guessesIdx+1] !== codeBox[3]) &&
             (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+1])))) {
             render2Black2WhiteHint();
-        }
+        }*/
         /*else if (
             ((guesses[guessesIdx] === codeBox[0] && guesses[guessesIdx+1] === codeBox[1]) && (codeBox.includes(guesses[guessesIdx+2]) || codeBox.includes(guesses[guessesIdx+3]))) ||
             ((guesses[guessesIdx] === codeBox[0] && guesses[guessesIdx+2] === codeBox[2]) && (codeBox.includes(guesses[guessesIdx+1]) || codeBox.includes(guesses[guessesIdx+3]))) ||
@@ -325,7 +327,7 @@ function guessCode() {
             ((guesses[guessesIdx+2] === codeBox[2] && guesses[guessesIdx+3] === codeBox[3]) && (codeBox.includes(guesses[guessesIdx]) || codeBox.includes(guesses[guessesIdx+1])))) {
             render2Black1WhiteHint();
         }*/
-        else if (
+        /*else if (
             ((guesses[guessesIdx] === codeBox[0] && guesses[guessesIdx+1] === codeBox[1]) &&
             (guesses[guessesIdx+2] !== codeBox[0]) && (guesses[guessesIdx+2] !== codeBox[1]) && (guesses[guessesIdx+3] !== codeBox[0]) && (guesses[guessesIdx+2] !== codeBox[1]) &&
             (codeBox.includes(guesses[guessesIdx+2]) || codeBox.includes(guesses[guessesIdx+3]))) ||
@@ -354,7 +356,7 @@ function guessCode() {
             (guesses[guessesIdx+1] === codeBox[1] && guesses[guessesIdx+3] === codeBox[3]) ||
             (guesses[guessesIdx+2] === codeBox[2] && guesses[guessesIdx+3] === codeBox[3])) {
             render2BlackHint();
-        }
+        }*/
         /*else if (
             ((guesses[guessesIdx] === codeBox[0]) && (codeBox.includes(guesses[guessesIdx+1]) && codeBox.includes(guesses[guessesIdx+2]) && codeBox.includes(guesses[guessesIdx+3]))) ||
             ((guesses[guessesIdx+1] === codeBox[1]) && (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+2]) && codeBox.includes(guesses[guessesIdx+3]))) ||
@@ -362,7 +364,7 @@ function guessCode() {
             ((guesses[guessesIdx+3] === codeBox[3]) && (codeBox.includes(guesses[guessesIdx]) && codeBox.includes(guesses[guessesIdx+1]) && codeBox.includes(guesses[guessesIdx+2])))) {
             render1Black3WhiteHint();
         }*/
-        else if (
+        /*else if (
             ((guesses[guessesIdx] === codeBox[0]) &&
             (guesses[guessesIdx+1] !== codeBox[0]) &&
             (guesses[guessesIdx+2] !== codeBox[0]) &&
@@ -481,8 +483,75 @@ function guessCode() {
             
             codeBox.includes(guesses[guessesIdx+3])) {
             render1WhiteHint();
+        }*/
+        else {
+            /*for(let i = 0; i < 4; i++) {
+                if(guesses[i] === codeBox[i]) {
+                  hints.push(2)
+                } else if(codeBox.includes(guesses[i])){
+                  hints.push(1)
+                } else {
+                  hints.push(0)
+                }
+            }*/
+            /*const leftoverCodeBox = [...codeBox];
+            console.log('leftover start', leftoverCodeBox)
+            for(let i = 0; i < 4; i++) {
+                if(guesses[i] === codeBox[i]) {
+                    hints.push(2)
+                    leftoverCodeBox.splice(i, 1)
+                }
+            }
+            console.log('leftover after blacks', leftoverCodeBox)
+            for(let i = 0; i < 4; i++) {
+                if(guesses[i] === codeBox[i]) {
+                    continue
+                }
+                else if (leftoverCodeBox.includes(guesses[i])){
+                    hints.push(1)
+                    leftoverCodeBox.splice(i, 1)
+                }*/
+                
+                /*else if(this color is included in the codeBox somewhere that is NOT already counted for by a black peg) {
+                   hints.push(1)
+                }*/
+            //}
+            //console.log('leftover after whites', leftoverCodeBox)
+        
+            //for (let i = 0; i < 4; i++) {
+                /*if(guesses[i] === codeBox[i]) {
+                    continue
+                }
+                else if (leftoverCodeBox.includes(guesses[i])){
+                    continue
+                }
+                else {
+                    hints.push(0)
+                }*/
+                /*if (guesses[i] !== codeBox[i] && !leftoverCodeBox.includes(guesses[i])) {
+                    hints.push(0)
+                }
+            }*/
+            const leftoverCodeBox = [...codeBox];
+            for(let i = 0; i < 4; i++) {
+                const indexOfI = leftoverCodeBox.indexOf(guesses[i])
+                if(guesses[i] === codeBox[i]) {
+                    hints.push(2)
+                    leftoverCodeBox.splice(indexOfI, 1)
+                }
+                else if (leftoverCodeBox.includes(guesses[i])) {
+                    hints.push(1)
+                    leftoverCodeBox.splice(indexOfI, 1)
+                }
+                else {
+                    hints.push(0)
+                }
+            }
+            console.log('hints', hints)
+            hints.sort(sortHints);
+            console.log('hints sorted', hints)
         }
-        guessesIdx +=4
+        //guessesIdx +=4
     }
 }
 
@@ -717,6 +786,9 @@ function renderColor() {
         cellEl.style.backgroundColor = guessColors[clrVal]
     })
 }*/
+function sortHints (a, b) {
+    return b - a;
+}
 
 function render3BlackHint() {
     const cell0 = document.getElementById(`${guessesIdx}guess`);

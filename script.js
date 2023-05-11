@@ -36,6 +36,9 @@ let codeBox = [0, 0, 0, 0];
 /*----- cached elements  -----*/
 
 const instructions = document.querySelector('#instructions');
+const instructionsCloseButton = document.querySelector('#instructionsClose');
+const instructionsH3 = document.querySelector('#instructionsClose > h3');
+const instructionsP = document.querySelector('#instructionsClose > p');
 // colors to select (buttons that will fill in first available empty board space with that color when clicked)
 // const colorButtons = [...document.querySelectorAll('#colors > button')];
 const redButton = document.querySelector('#red');
@@ -65,6 +68,7 @@ const originalColorsHTML = document.querySelector('#colors');
 
 // when instructions drop-down is clicked, instructions will drop down, filling out left side of page
 instructions.addEventListener('click', instructionsDrop)
+instructionsCloseButton.addEventListener('click', instructionsClose)
 // when colored buttons on bottom are clicked, fill in first available empty board space with that color
 redButton.addEventListener('click', guessRed)
 yellowButton.addEventListener('click', guessYellow)
@@ -293,6 +297,18 @@ function instructionsDrop() {
     </ol>`
     instructions.style.height = '550px'
     instructions.style.fontSize = '14px'
+    instructionsCloseButton.style.visibility = 'visible'
+}
+
+function instructionsClose() {
+    instructions.innerHTML = 
+    `<h3>How to Play</h3>
+    <p>Click to View Instructions</p>`
+    instructions.style.height = '85px'
+    instructions.style.fontSize = '16px'
+    /*instructionsH3.style.fontSize = '20px'
+    instructionsP.style.fontSize = '16px'*/
+    instructionsCloseButton.style.visibility = 'hidden'
 }
 
 // when you click a color on the bottom, the first available empty space on the board is filled in with that color

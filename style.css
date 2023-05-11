@@ -61,6 +61,24 @@ ol {
     margin-right: 20px;
 }
 
+#instructionsClose {
+    grid-area: inst;
+    text-align: center;
+    background-color: silver;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 20px;
+    height: 20px;
+    font-size: 20px;
+    margin-left: 370px;
+    visibility: hidden;
+}
+
+#instructionsClose:hover {
+    cursor: pointer;
+    background-color: rgb(212, 212, 212);
+}
+
 #board {
     background-color: gray;
     border: 1px solid black;
@@ -303,6 +321,9 @@ h2, #board, #secretContainer, #guessButtonContainer {
     #guessButtonContainer {
         margin-left: -40px;
     }
+    #instructionsClose {
+        margin-left: 350px;
+    }
 }
 
 @media only screen and (max-width: 1154px) {
@@ -310,6 +331,9 @@ h2, #board, #secretContainer, #guessButtonContainer {
         font-size: 12px;
         margin-left: -10px;
         margin-right: 5px;
+    }
+    #instructionsClose {
+        margin-left: 350px;
     }
 }
 
@@ -328,10 +352,16 @@ h2, #board, #secretContainer, #guessButtonContainer {
         margin-left: -20px;
         margin-right: 3px;
     }
+    #instructionsClose {
+        margin-left: 250px;
+    }
 }
 
 @media only screen and (max-width: 1003px) {
     #instructions > ol {
         width: 100px;
+    }
+    #instructionsClose {
+        margin-left: 230px;
     }
 }

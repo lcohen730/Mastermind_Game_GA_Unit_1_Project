@@ -13,8 +13,9 @@
 <body>
     <h2>Mastermind: Crack the Code</h2>
     <div id="instructions">
-        <h3>Instructions</h3>
-        <ol>
+        <h3>How to Play</h3>
+        <p>Click to View Instructions</p>
+        <!--<ol>
             <li>Guess a combination of colors by clicking on the colors in the order you want your guess.</li>
             <li>The game will fill in empty peg slots with a black peg for the amount of colors you guessed correct
                 color and correct location and a white peg for amount of colors you guessed correct color but wrong
@@ -22,101 +23,121 @@
             <li>Using logic, determine what to guess next and make your next several guesses (up to 9) to figure out
                 what the secret code of colors is.</li>
             <li>If you guess the secret code in 9 moves or less, you win! If not, you lose.</li>
-        </ol>
+        </ol>-->
     </div>
     <div id="board">
         <div id="boardDisplay">
             <div id="guessed">
-                <div id="32"></div>
-                <div id="33"></div>
-                <div id="34"></div>
-                <div id="35"></div>
-
-                <div id="28"></div>
-                <div id="29"></div>
-                <div id="30"></div>
-                <div id="31"></div>
-
-                <div id="24"></div>
-                <div id="25"></div>
-                <div id="26"></div>
-                <div id="27"></div>
-
-                <div id="20"></div>
-                <div id="21"></div>
-                <div id="22"></div>
-                <div id="23"></div>
-
-                <div id="16"></div>
-                <div id="17"></div>
-                <div id="18"></div>
-                <div id="19"></div>
-
-                <div id="12"></div>
-                <div id="13"></div>
-                <div id="14"></div>
-                <div id="15"></div>
-
-                <div id="8"></div>
-                <div id="9"></div>
-                <div id="10"></div>
-                <div id="11"></div>
-
-                <div id="4"></div>
-                <div id="5"></div>
-                <div id="6"></div>
-                <div id="7"></div>
-
-                <div id="0"></div>
-                <div id="1"></div>
-                <div id="2"></div>
-                <div id="3"></div>
+                <div id="guess9th">
+                    <div id="32"></div>
+                    <div id="33"></div>
+                    <div id="34"></div>
+                    <div id="35"></div>
+                </div>
+                <div id="guess8th">
+                    <div id="28"></div>
+                    <div id="29"></div>
+                    <div id="30"></div>
+                    <div id="31"></div>
+                </div>
+                <div id="guess7th">
+                    <div id="24"></div>
+                    <div id="25"></div>
+                    <div id="26"></div>
+                    <div id="27"></div>
+                </div>
+                <div id="guess6th">
+                    <div id="20"></div>
+                    <div id="21"></div>
+                    <div id="22"></div>
+                    <div id="23"></div>
+                </div>
+                <div id="guess5th">
+                    <div id="16"></div>
+                    <div id="17"></div>
+                    <div id="18"></div>
+                    <div id="19"></div>
+                </div>
+                <div id="guess4th">
+                    <div id="12"></div>
+                    <div id="13"></div>
+                    <div id="14"></div>
+                    <div id="15"></div>
+                </div>
+                <div id="guess3rd">
+                    <div id="8"></div>
+                    <div id="9"></div>
+                    <div id="10"></div>
+                    <div id="11"></div>
+                </div>
+                <div id="guess2nd">
+                    <div id="4"></div>
+                    <div id="5"></div>
+                    <div id="6"></div>
+                    <div id="7"></div>
+                </div>
+                <div id="guess1st">
+                    <div id="0"></div>
+                    <div id="1"></div>
+                    <div id="2"></div>
+                    <div id="3"></div>
+                </div>
             </div>
             <div id="hints">
-                <div id="32guess"></div>
-                <div id="33guess"></div>
-                <div id="34guess"></div>
-                <div id="35guess"></div>
-
-                <div id="28guess"></div>
-                <div id="29guess"></div>
-                <div id="30guess"></div>
-                <div id="31guess"></div>
-
-                <div id="24guess"></div>
-                <div id="25guess"></div>
-                <div id="26guess"></div>
-                <div id="27guess"></div>
-
-                <div id="20guess"></div>
-                <div id="21guess"></div>
-                <div id="22guess"></div>
-                <div id="23guess"></div>
-
-                <div id="16guess"></div>
-                <div id="17guess"></div>
-                <div id="18guess"></div>
-                <div id="19guess"></div>
-
-                <div id="12guess"></div>
-                <div id="13guess"></div>
-                <div id="14guess"></div>
-                <div id="15guess"></div>
-
-                <div id="8guess"></div>
-                <div id="9guess"></div>
-                <div id="10guess"></div>
-                <div id="11guess"></div>
-
-                <div id="4guess"></div>
-                <div id="5guess"></div>
-                <div id="6guess"></div>
-                <div id="7guess"></div>
-
-                <div id="0guess"></div>
-                <div id="1guess"></div>
-                <div id="2guess"></div>
-                <div id="3guess"></div>
+                <div id="hints9th">
+                    <div id="32guess"></div>
+                    <div id="33guess"></div>
+                    <div id="34guess"></div>
+                    <div id="35guess"></div>
+                </div>
+                <div id="hints8th">
+                    <div id="28guess"></div>
+                    <div id="29guess"></div>
+                    <div id="30guess"></div>
+                    <div id="31guess"></div>
+                </div>
+                <div id="hints7th">
+                    <div id="24guess"></div>
+                    <div id="25guess"></div>
+                    <div id="26guess"></div>
+                    <div id="27guess"></div>
+                </div>
+                <div id="hints6th">
+                    <div id="20guess"></div>
+                    <div id="21guess"></div>
+                    <div id="22guess"></div>
+                    <div id="23guess"></div>
+                </div>
+                <div id="hints5th">
+                    <div id="16guess"></div>
+                    <div id="17guess"></div>
+                    <div id="18guess"></div>
+                    <div id="19guess"></div>
+                </div>
+                <div id="hints4th">
+                    <div id="12guess"></div>
+                    <div id="13guess"></div>
+                    <div id="14guess"></div>
+                    <div id="15guess"></div>
+                </div>
+                <div id="hints3rd">
+                    <div id="8guess"></div>
+                    <div id="9guess"></div>
+                    <div id="10guess"></div>
+                    <div id="11guess"></div>
+                </div>
+                <div id="hints2nd">
+                    <div id="4guess"></div>
+                    <div id="5guess"></div>
+                    <div id="6guess"></div>
+                    <div id="7guess"></div>
+                </div>
+                <div id="hints1st">
+                    <div id="0guess"></div>
+                    <div id="1guess"></div>
+                    <div id="2guess"></div>
+                    <div id="3guess"></div>
+                </div>
             </div>
         </div>
         <div id="colors">

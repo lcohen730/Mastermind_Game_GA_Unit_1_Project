@@ -35,6 +35,7 @@ let codeBox = [0, 0, 0, 0];
 
 /*----- cached elements  -----*/
 
+const instructions = document.querySelector('#instructions');
 // colors to select (buttons that will fill in first available empty board space with that color when clicked)
 // const colorButtons = [...document.querySelectorAll('#colors > button')];
 const redButton = document.querySelector('#red');
@@ -51,14 +52,19 @@ const secretCode2 = document.querySelector('#code2');
 const secretCode3 = document.querySelector('#code3');
 
 const guessButton = document.querySelector('#guessButton');
+const guessButtonContainer = document.querySelector('#guessButtonContainer');
 
 const outcome = document.querySelector('#outcome');
 
 const playAgainButtonContainer = document.querySelector('#playAgainButtonContainer');
 const playAgainButton = document.querySelector('#playAgainButton');
 
+const originalColorsHTML = document.querySelector('#colors');
+
 /*----- event listeners -----*/
 
+// when instructions drop-down is clicked, instructions will drop down, filling out left side of page
+instructions.addEventListener('click', instructionsDrop)
 // when colored buttons on bottom are clicked, fill in first available empty board space with that color
 redButton.addEventListener('click', guessRed)
 yellowButton.addEventListener('click', guessYellow)
@@ -66,8 +72,13 @@ greenButton.addEventListener('click', guessGreen)
 tealButton.addEventListener('click', guessTeal)
 purpleButton.addEventListener('click', guessPurple)
 magentaButton.addEventListener('click', guessMagenta)
+redButton.addEventListener('click', revealGuessButton)
+yellowButton.addEventListener('click', revealGuessButton)
+greenButton.addEventListener('click', revealGuessButton)
+tealButton.addEventListener('click', revealGuessButton)
+purpleButton.addEventListener('click', revealGuessButton)
+magentaButton.addEventListener('click', revealGuessButton)
 // colorButtons.addEventListener('click', guessColor)
-// when instructions drop-down is clicked, instructions will drop down, filling out left side of page
 
 // when you click on one of the circles filled in on the top row on the board (guess currently being made), the color will be removed (if you decided to play a different color)
 
@@ -123,6 +134,7 @@ function start() {
     randomize3();
     //hideSecretCode();
     hidePlayAgain();
+    hideGuessButton();
     console.log(codeBox)
 }
 
@@ -174,6 +186,64 @@ function hidePlayAgain() {
     playAgainButtonContainer.style.visibility = 'hidden'
 }
 
+function hideGuessButton() {
+    guessButton.style.visibility = 'hidden'
+    guessButtonContainer.style.visibility = 'hidden'
+}
+
+function revealGuessButton() {
+    if (guesses.indexOf(0) === guessesIdx+4) {
+        guessButton.style.visibility = 'visible'
+        guessButtonContainer.style.visibility = 'visible'
+        /*colors.innerHTML =
+        `<div id="redDiv"></div>
+        <div id="yellowDiv"></div>
+        <div id="greenDiv"></div>
+        <div id="tealDiv"></div>
+        <div id="purpleDiv"></div>
+        <div id="magentaDiv"></div>`
+        const redDiv = document.querySelector('#redDiv');
+        const yellowDiv = document.querySelector('#yellowDiv');
+        const greenDiv = document.querySelector('#greenDiv');
+        const tealDiv = document.querySelector('#tealDiv');
+        const purpleDiv = document.querySelector('#purpleDiv');
+        const magentaDiv = document.querySelector('#magentaDiv');
+        redDiv.style.backgroundColor = 'rgb(250, 177, 154)'
+        redDiv.style.borderRadius = '50%'
+        redDiv.style.width = '36px'
+        redDiv.style.height = '36px'
+        redDiv.style.border = '2px solid gray'
+        yellowDiv.style.backgroundColor = 'rgb(251, 241, 195)'
+        yellowDiv.style.borderRadius = '50%'
+        yellowDiv.style.width = '36px'
+        yellowDiv.style.height = '36px'
+        yellowDiv.style.border = '2px solid gray'
+        greenDiv.style.backgroundColor = 'rgb(203, 215, 189)'
+        greenDiv.style.borderRadius = '50%'
+        greenDiv.style.width = '36px'
+        greenDiv.style.height = '36px'
+        greenDiv.style.border = '2px solid gray'
+        tealDiv.style.backgroundColor = 'rgb(169, 192, 194)'
+        tealDiv.style.borderRadius = '50%'
+        tealDiv.style.width = '36px'
+        tealDiv.style.height = '36px'
+        tealDiv.style.border = '2px solid gray'
+        purpleDiv.style.backgroundColor = 'rgb(207, 205, 213)'
+        purpleDiv.style.borderRadius = '50%'
+        purpleDiv.style.width = '36px'
+        purpleDiv.style.height = '36px'
+        purpleDiv.style.border = '2px solid gray'
+        magentaDiv.style.backgroundColor = 'rgb(221, 208, 221)'
+        magentaDiv.style.borderRadius = '50%'
+        magentaDiv.style.width = '36px'
+        magentaDiv.style.height = '36px'
+        magentaDiv.style.border = '2px solid gray'*/
+    }
+    /*else {
+        colors.innerHTML = originalColorsHTML
+    }*/
+}
+
 function restart() {
     location.reload();
 }
@@ -209,8 +279,27 @@ function renderCode3() {
     cellEl.style.backgroundColor = guessColors[codeBox[3]]
 }
 
+function instructionsDrop() {
+    instructions.innerHTML = 
+    `<h3>How to Play</h3>
+    <ol>
+        <li>Guess a combination of colors by clicking on the colors in the order you want your guess.</li>
+        <li>The game will fill in empty peg slots with a black peg for the amount of colors you guessed correct
+            color and correct location and a white peg for amount of colors you guessed correct color but wrong
+            location.</li>
+        <li>Using logic, determine what to guess next and make your next several guesses (up to 9) to figure out
+            what the secret code of colors is.</li>
+        <li>If you guess the secret code in 9 moves or less, you win! If not, you lose.</li>
+    </ol>`
+    instructions.style.height = '550px'
+    instructions.style.fontSize = '14px'
+}
+
 // when you click a color on the bottom, the first available empty space on the board is filled in with that color
 function guessRed() {
+    /*if (guessButton.style.visibility = 'visible') {
+        return;
+    }*/
     const guessesIdx = guesses.indexOf(0);
     guesses[guessesIdx] = 1
     renderColor();
@@ -247,6 +336,8 @@ function guessMagenta() {
 }
 
 function guessCode() {
+    guessButton.style.visibility = 'hidden'
+    guessButtonContainer.style.visibility = 'hidden'
     if (guesses.indexOf(!0) % 4) {
         // if the guess matches the secret code, the secret code is revealed and a message pops up and replaces the body, saying something like "you win! play again for another code" and reveals a play again button that re-renders the init board
         if (guesses[guessesIdx] === codeBox[0] && guesses[guessesIdx+1] === codeBox[1] && guesses[guessesIdx+2] === codeBox[2] && guesses[guessesIdx+3] === codeBox[3]) {
@@ -302,8 +393,7 @@ function guessCode() {
             //console.log('hints sorted', hints)
             //renderHint();
             const leftoverCodeBox = [...codeBox];
-            console.log('leftover start', leftoverCodeBox)
-            for(let i = guessesIdx; i < (guessesIdx+4); i++) {
+            /*for(let i = guessesIdx; i < (guessesIdx+4); i++) {
                 const indexOfI = leftoverCodeBox.indexOf(guesses[i])
                 if(guesses[i] === codeBox[(i%4)]) {
                     hints.push(2)
@@ -318,10 +408,44 @@ function guessCode() {
                 else {
                     hints.push(0)
                 }
+            }*/
+            for(let i = guessesIdx; i < (guessesIdx+4); i++) {
+                const indexOfI = leftoverCodeBox.indexOf(guesses[i])
+                if(guesses[i] === codeBox[(i%4)]) {
+                    hints.push(2)
+                    leftoverCodeBox.splice(indexOfI, 1)
+                }
             }
-            console.log('hints', hints)
-            /*hints.sort(sortHints);
-            console.log('hints sorted', hints)*/
+            for(let i = guessesIdx; i < (guessesIdx+4); i++) {
+                const indexOfI = leftoverCodeBox.indexOf(guesses[i])
+                if(guesses[i] === codeBox[(i%4)]) {
+                    continue;
+                }
+                else if (leftoverCodeBox.includes(guesses[i])) {
+                    hints.push(1)
+                    leftoverCodeBox.splice(indexOfI, 1)
+                }
+            }
+            // below variable is from: https://www.w3docs.com/snippets/javascript/how-to-get-the-difference-between-two-arrays-in-javascript.html
+            const accountedFor = codeBox.filter(color => leftoverCodeBox.indexOf(color) === -1);
+            for(let i = guessesIdx; i < (guessesIdx+4); i++) {
+                /*if(guesses[i] !== codeBox[(i%4)] && !codeBox.includes(guesses[i])) {
+                    hints.push(0)
+                }*/
+                if(guesses[i] === codeBox[(i%4)]) {
+                    continue;
+                }
+                else if (accountedFor.includes(guesses[i])) {
+                    continue;
+                }
+                else {
+                    hints.push(0)
+                }
+            }
+            console.log('hints after empties', hints)
+            //const thisGuessArr = hints.splice(guessesIdx, 4)
+            //thisGuessArr.sort(sortHints);
+            //console.log('this guess hints sorted', thisGuessArr)
             renderHint();
         }
         guessesIdx +=4
@@ -342,6 +466,7 @@ function renderColor() {
 }
 
 // function for revealing black and white pegs
+
 function sortHints (a, b) {
     return b - a;
 }
@@ -356,6 +481,20 @@ function renderHint() {
     const cell3 = document.getElementById(`${guessesIdx+3}guess`);
     cell3.style.backgroundColor = pegColors[hints[guessesIdx+3]]
 }
+
+/*function renderHint() {
+    hints.forEach(function (guessesIdx, Idx) {
+        const cellId = `${Idx}guess`;
+        const cellEl = document.getElementById(cellId);
+        cellEl.style.backgroundColor = pegColors[hints[guessesIdx]]
+        guessesIdx+=1
+    })
+    for(let i = guessesIdx; i < (guessesIdx+4); i++) {
+        const cellId = `${i}guess`;
+        const cellEl = document.getElementById(cellId);
+        cellEl.style.backgroundColor = pegColors[hints[i]]
+    }
+}*/
 
 // render win or lose message function
 

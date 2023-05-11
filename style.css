@@ -34,15 +34,27 @@ h2 {
     background-color: silver;
     border: 1px solid black;
     border-radius: 15px;
+    font-family: 'Courier New', Courier, monospace;
     padding: 10px;
     margin: 0 40px 0;
-    height: 550px;
+    /*height: 550px;*/
+    height: 85px;
     display: flex;
     flex-direction: column;
 }
 
+#instructions:hover {
+    cursor: pointer;
+    background-color: rgb(212, 212, 212);
+}
+
 h3 {
     align-self: center;
+}
+
+p {
+    align-self: center;
+    margin-top: -10px; 
 }
 
 ol {
@@ -73,16 +85,25 @@ ol {
     margin: 10px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
-    align-items: center;
+    justify-content: center;
 }
 
 #guessed > div {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-evenly;
+}
+
+#guess9th, #guess8th, #guess7th, #guess6th, #guess5th, #guess4th, #guess3rd, #guess2nd {
+    border-bottom: 1px solid black;
+}
+
+#guessed > div > div {
     border-radius: 50%;
     border: 1px solid black;
     width: 30px;
     height: 30px;
-    margin: 10px;
+    margin: 10px 14.85px 10px;
 }
 
 #hints {
@@ -96,11 +117,20 @@ ol {
     margin-bottom: 10px;
     display: flex;
     flex-wrap: wrap;
+}
+
+#hints > div {
+    display: flex;
+    flex-wrap: wrap;
     justify-content: space-evenly;
     align-content: space-evenly;
 }
 
-#hints > div {
+#hints9th, #hints8th, #hints7th, #hints6th, #hints5th, #hints4th, #hints3rd, #hints2nd {
+    border-bottom: 1px solid black;
+}
+
+#hints > div > div {
     border-radius: 50%;
     border: 1px solid black;
     width: 15px;
@@ -158,6 +188,7 @@ ol {
 
 #red:hover, #yellow:hover, #green:hover, #teal:hover, #purple:hover, #magenta:hover, #guessButton:hover {
     cursor: pointer;
+    border: 1px solid black;
 }
 
 #secretContainer {
@@ -230,7 +261,7 @@ ol {
     border: 1px solid black;
     border-radius: 15px;
     padding: 10px;
-    margin-top: -60px;
+    margin-top: -70px;
     margin-bottom: 4px;
     margin-right: 300px;
     margin-left: -100px;
@@ -253,24 +284,54 @@ h2, #board, #secretContainer, #guessButtonContainer {
     justify-content: center;
 }
 
-@media only screen and (max-width: 1194px) {
-    #instructions > ol {
-        font-size: 14px;
+@media only screen and (max-width: 1331px) {
+    #guessButtonContainer {
+        margin-left: -80px;
     }
 }
 
-@media only screen and (max-width: 1111px) {
+@media only screen and (max-width: 1238px) {
+    #guessButtonContainer {
+        margin-left: -60px;
+    }
+}
+
+@media only screen and (max-width: 1194px) {
     #instructions > ol {
         font-size: 13px;
-        margin: 0 20px 0;
-        padding: 0 5px 0;
+    }
+    #guessButtonContainer {
+        margin-left: -40px;
+    }
+}
+
+@media only screen and (max-width: 1154px) {
+    #instructions > ol {
+        font-size: 12px;
+        margin-left: -10px;
         margin-right: 5px;
     }
 }
 
-@media only screen and (max-width: 1021px) {
-    #instructions {
-        font-size: 16px;
-        width: 150px;
+@media only screen and (max-width: 1111px) {
+    #guessButtonContainer {
+        margin-left: -20px;
+    }
+}
+
+@media only screen and (max-width: 1076px) {
+    #guessButtonContainer {
+        margin-left: 0;
+    }
+    #instructions > ol {
+        font-size: 11px;
+        margin-left: -20px;
+        margin-right: 3px;
+    }
+}
+
+@media only screen and (max-width: 1003px) {
+    #instructions > ol {
+        width: 100px;
     }
 }

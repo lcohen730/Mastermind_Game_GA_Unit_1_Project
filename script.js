@@ -136,7 +136,7 @@ function start() {
     randomize1();
     randomize2();
     randomize3();
-    //hideSecretCode();
+    hideSecretCode();
     hidePlayAgain();
     hideGuessButton();
     console.log(codeBox)
@@ -196,7 +196,7 @@ function hideGuessButton() {
 }
 
 function revealGuessButton() {
-    if (guesses.indexOf(0) === guessesIdx+4) {
+    if (guesses.indexOf(0) === guessesIdx+4 || guesses[35] !== 0) {
         guessButton.style.visibility = 'visible'
         guessButtonContainer.style.visibility = 'visible'
         /*colors.innerHTML =
@@ -386,45 +386,7 @@ function guessCode() {
         }
         // if the guess does not match the secret code, and it is NOT the 9th/last turn, black and white pegs are revealed in the right-side small four circle space - one black peg for each color that is in the correct space and the correct color, and one white peg for each color that is in the secret code, but in the wrong space
         else {
-            //const leftoverCodeBox = [...codeBox];
-            //console.log('leftover start', leftoverCodeBox)
-            /*for(let i = 0; i < 4; i++) {
-                const indexOfI = leftoverCodeBox.indexOf(guesses[i])
-                if(guesses[i] === codeBox[i]) {
-                    hints.push(2)
-                    leftoverCodeBox.splice(indexOfI, 1)*/
-                    //console.log('leftover after blacks', leftoverCodeBox)
-                /*}
-                else if (leftoverCodeBox.includes(guesses[i])) {
-                    hints.push(1)
-                    leftoverCodeBox.splice(indexOfI, 1)*/
-                    //console.log('leftover after whites', leftoverCodeBox)
-                /*}
-                else {
-                    hints.push(0)
-                }
-            }*/
-            //console.log('hints', hints)
-            //hints.sort(sortHints);
-            //console.log('hints sorted', hints)
-            //renderHint();
             const leftoverCodeBox = [...codeBox];
-            /*for(let i = guessesIdx; i < (guessesIdx+4); i++) {
-                const indexOfI = leftoverCodeBox.indexOf(guesses[i])
-                if(guesses[i] === codeBox[(i%4)]) {
-                    hints.push(2)
-                    leftoverCodeBox.splice(indexOfI, 1)
-                    console.log('leftover after blacks', leftoverCodeBox)
-                }
-                else if (leftoverCodeBox.includes(guesses[i])) {
-                    hints.push(1)
-                    leftoverCodeBox.splice(indexOfI, 1)
-                    console.log('leftover after whites', leftoverCodeBox)
-                }
-                else {
-                    hints.push(0)
-                }
-            }*/
             for(let i = guessesIdx; i < (guessesIdx+4); i++) {
                 const indexOfI = leftoverCodeBox.indexOf(guesses[i])
                 if(guesses[i] === codeBox[(i%4)]) {
@@ -442,23 +404,15 @@ function guessCode() {
                     leftoverCodeBox.splice(indexOfI, 1)
                 }
             }
-            // below variable is from: https://www.w3docs.com/snippets/javascript/how-to-get-the-difference-between-two-arrays-in-javascript.html
-            const accountedFor = codeBox.filter(color => leftoverCodeBox.indexOf(color) === -1);
-            for(let i = guessesIdx; i < (guessesIdx+4); i++) {
-                /*if(guesses[i] !== codeBox[(i%4)] && !codeBox.includes(guesses[i])) {
-                    hints.push(0)
-                }*/
-                if(guesses[i] === codeBox[(i%4)]) {
-                    continue;
-                }
-                else if (accountedFor.includes(guesses[i])) {
-                    continue;
-                }
-                else {
+            for(let i = 0; i < leftoverCodeBox.length; i++) {
+                if (!leftoverCodeBox.includes(guesses[guessesIdx]) || 
+                !leftoverCodeBox.includes(guesses[guessesIdx+1]) ||
+                !leftoverCodeBox.includes(guesses[guessesIdx+2]) ||
+                !leftoverCodeBox.includes(guesses[guessesIdx+3])) {
                     hints.push(0)
                 }
             }
-            console.log('hints after empties', hints)
+            //console.log('hints after empties', hints)
             //const thisGuessArr = hints.splice(guessesIdx, 4)
             //thisGuessArr.sort(sortHints);
             //console.log('this guess hints sorted', thisGuessArr)

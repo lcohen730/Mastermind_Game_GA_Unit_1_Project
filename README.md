@@ -14,6 +14,7 @@ I hope you enjoy this online version of the classic game.
 <img width="500" alt="GA_SEI_Project_1" src="https://github.com/lcohen730/Mastermind_Game_GA_Unit_1_Project/assets/111040134/1ca5cd18-61d4-4a27-b43e-ca4152b3d51a">
 
 ## Game Screenshots
+Background Image from https://stock.adobe.com/search?k=calm+wallpaper
 **Game Start**<br>
 <img width="500" alt="Screenshot 2023-05-12 at 19 56 07" src="https://github.com/lcohen730/Mastermind_Game_GA_Unit_1_Project/assets/111040134/7bcf39db-5508-45b4-bbdf-c57d09611510">
 

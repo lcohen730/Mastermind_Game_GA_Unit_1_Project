@@ -37,7 +37,6 @@ h2 {
     font-family: 'Courier New', Courier, monospace;
     padding: 10px;
     margin: 0 40px 0;
-    /*height: 550px;*/
     height: 85px;
     display: flex;
     flex-direction: column;
@@ -171,26 +170,21 @@ ol {
 
 #red {
     background-color: rgb(251, 143, 109);
-    /*background-color: salmon;*/
 }
 
 #yellow {
     background-color:  rgb(251, 231, 144);
-    /*background-color: moccasin;*/
 }
 
 #green {
-    /*background-color: yellowgreen;*/
     background-color:  rgb(183, 215, 146);
 }
 
 #teal {
-    /*background-color: lightseagreen;*/
     background-color:  rgb(126, 189, 195);
 }
 
 #purple {
-    /*background-color: mediumpurple;*/
     background-color:  rgb(173, 156, 214);
 }
 
@@ -284,8 +278,6 @@ ol {
     margin-right: 300px;
     margin-left: -100px;
     width: 90px;
-    /*justify-self: center;
-    align-self: center;*/
 }
 
 #guessButton {

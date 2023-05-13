@@ -1,3 +1,5 @@
+// huge thanks to the Connect Four game and general guide to building a browser game for helping me get started
+
 /*----- constants -----*/
 
 // color guess options: red, yellow, green, teal, purple, magenta

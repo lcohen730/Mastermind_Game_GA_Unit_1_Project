@@ -112,7 +112,7 @@ function start() {
         0, 0, 0, 0  // r8
     //  c0 c1 c2 c3 
     ]
-    emptyGuesses();
+    //emptyGuesses();
     // no white or black pegs have been filled in
     /*hints = [
         0, 0, 0, 0, // guess 1 hints
@@ -126,7 +126,7 @@ function start() {
         0, 0, 0, 0  // guess 9 hints
     ]*/
     hints = []
-    emptyHints();
+    //emptyHints();
     // secret code is re-randomized and hidden
     /*for (color of codeBox) {
         color = color + (Math.floor(Math.random) * 6)
@@ -142,7 +142,7 @@ function start() {
     console.log(codeBox)
 }
 
-function emptyGuesses() {
+/*function emptyGuesses() {
     guesses.forEach(function (clrVal, Idx) {
         const cellId = `${Idx}`;
         const cellEl = document.getElementById(cellId);
@@ -156,7 +156,7 @@ function emptyHints() {
         const cellEl = document.getElementById(cellId);
         cellEl.style.backgroundColor = guessColors[clrVal]
     })
-}
+}*/
 
 function randomize0() {
     codeBox[0] = Math.floor(Math.random() * 6 + 1)
@@ -287,10 +287,9 @@ function instructionsDrop() {
     instructions.innerHTML = 
     `<h3>How to Play</h3>
     <ol>
-        <li>Guess a combination of colors by clicking on the colors in the order you want your guess.</li>
-        <li>The game will fill in empty peg slots with a black peg for the amount of colors you guessed correct
-            color and correct location and a white peg for amount of colors you guessed correct color but wrong
-            location.</li>
+        <li>Guess a combination of colors by clicking on the colors in the order you want your guess, then click the guess button to lock in your guess.</li>
+        <li>The game will fill in the four empty peg slots to the right of your guess with a black peg for every color you guessed correctly
+            in the correct location and a white peg for every color you guessed correctly but in the wrong location.</li>
         <li>Using logic, determine what to guess next and make your next several guesses (up to 9) to figure out
             what the secret code of colors is.</li>
         <li>If you guess the secret code in 9 moves or less, you win! If not, you lose.</li>

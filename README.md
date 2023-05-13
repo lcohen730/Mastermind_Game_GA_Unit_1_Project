@@ -10,6 +10,9 @@ The modern board game of Mastermind was invented in 1970 by Mordecai Meirowitz, 
 
 I hope you enjoy this online version of the classic game.
 
+## Wireframe
+<img width="500" alt="GA_SEI_Project_1" src="https://github.com/lcohen730/Mastermind_Game_GA_Unit_1_Project/assets/111040134/1ca5cd18-61d4-4a27-b43e-ca4152b3d51a">
+
 ## Game Screenshots
 **Game Start**<br>
 <img width="500" alt="Screenshot 2023-05-12 at 19 56 07" src="https://github.com/lcohen730/Mastermind_Game_GA_Unit_1_Project/assets/111040134/7bcf39db-5508-45b4-bbdf-c57d09611510">
@@ -27,7 +30,8 @@ I hope you enjoy this online version of the classic game.
 
 ## Getting Started
 
-Click here to play: https://stately-gumdrop-33cd7c.netlify.app
+Click here to play: https://lcohen730.github.io/Mastermind_Game_GA_Unit_1_Project/
+In case that link doesn't work: https://stately-gumdrop-33cd7c.netlify.app
 
 Before or during gameplay, feel free to click on the "How to Play" section on the left side of the page for more detailed instructions.
 
